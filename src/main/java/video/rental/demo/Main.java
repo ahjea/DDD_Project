@@ -1,0 +1,27 @@
+package video.rental.demo;
+
+import video.rental.demo.application.Interactor;
+import video.rental.demo.application.utils.SampleGenerator;
+import video.rental.demo.domain.Repository;
+import video.rental.demo.infrastructure.RepositoryDBImpl;
+import video.rental.demo.presentation.CmdUI;
+
+public class Main
+{
+	private static CmdUI ui;
+
+	public static void main(String[] args)
+	{
+		Repository repository = new RepositoryDBImpl();
+	
+		SampleGenerator.generateSamples(repository);
+		
+		Interactor interactor = new Interactor(repository);
+		
+		ui = new CmdUI(interactor);
+		
+		ui.start();
+	}
+}
+
+
