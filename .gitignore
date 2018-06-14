@@ -44,8 +44,6 @@ Thumbs.db
 *.svn
 nb_jr_remoting.cfg
 
-.project
-.classpath
 .idea
 *.iml
 atlassian-ide-plugin.xml
