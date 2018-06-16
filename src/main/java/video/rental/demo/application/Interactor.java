@@ -6,6 +6,7 @@ import java.util.List;
 
 import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.Code;
+import video.rental.demo.domain.model.customer.Name;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.PriceCode;
 import video.rental.demo.domain.model.video.Rating;
@@ -140,7 +141,7 @@ public class Interactor {
 	}
 
 	public void registerCustomer(String name, String code, String dateOfBirth) {
-		Customer customer = new Customer(new Code(code), name, dateOfBirth);
+		Customer customer = new Customer(new Code(code), new Name(name), dateOfBirth);
 		getCustomerRepository().saveCustomer(customer);
 	}
 

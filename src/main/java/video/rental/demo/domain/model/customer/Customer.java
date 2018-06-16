@@ -17,7 +17,7 @@ import video.rental.demo.domain.model.video.PriceCode;
 public class Customer implements video.rental.demo.domain.shared.Entity<Customer> {
 	@Id
 	private Code code;
-	private String name;
+	private Name name;
 	private String dateOfBirth;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -26,7 +26,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 	public Customer() {	// for hibernate
 	}
 
-	public Customer(Code code, String name, String dateOfBirth) {
+	public Customer(Code code, Name name, String dateOfBirth) {
 		this.code = code;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
@@ -36,7 +36,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 		return code;
 	}
 
-	public String getName() {
+	public Name getName() {
 		return name;
 	}
 
