@@ -15,7 +15,7 @@ import video.rental.demo.domain.model.customer.Customer;
 
 @Entity
 @Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" }) })
-public class Video {
+public class Video{
 	@Id
 	private String title;
 	private Rating videoRating;
@@ -140,4 +140,5 @@ public class Video {
 		}
 		return false;
 	}
+
 }

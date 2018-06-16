@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import video.rental.demo.domain.shared.ValueObject;
+
 @Entity
-public class Rental {
+public class Rental implements ValueObject<Rental> {
 
 	@Id
 	@GeneratedValue
@@ -91,5 +93,11 @@ public class Rental {
 			diff = new Date().getTime() - getRentDate().getTime();
 		}
 		return (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+	}
+
+	@Override
+	public boolean sameValueAs(Rental other) {
+		// TODO Auto-generated method stub
+		return other != null && this.equals(other);
 	}
 }
