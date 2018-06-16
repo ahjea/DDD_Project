@@ -5,9 +5,9 @@ import java.util.Scanner;
 import video.rental.demo.application.Interactor;
 
 /*
- * 디비 엑세스 분리
- * constructor를 통한 디펜던시 인젝
- * 비즈니스 로직 분
+ * �뵒鍮� �뿊�꽭�뒪 遺꾨━
+ * constructor瑜� �넻�븳 �뵒�렂�뜕�떆 �씤�젥
+ * 鍮꾩쫰�땲�뒪 濡쒖쭅 遺�
  * */
 public class CmdUI {
 	Interactor interactor;
