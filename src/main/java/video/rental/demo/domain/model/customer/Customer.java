@@ -18,7 +18,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 	@Id
 	private Code code;
 	private Name name;
-	private String dateOfBirth;
+	private DateOfBirth dateOfBirth;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Rental> rentals = new ArrayList<Rental>();
@@ -26,7 +26,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 	public Customer() {	// for hibernate
 	}
 
-	public Customer(Code code, Name name, String dateOfBirth) {
+	public Customer(Code code, Name name, DateOfBirth dateOfBirth) {
 		this.code = code;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
@@ -40,7 +40,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 		return name;
 	}
 
-	public String getDateOfBirth() {
+	public DateOfBirth getDateOfBirth() {
 		return dateOfBirth;
 	}
 

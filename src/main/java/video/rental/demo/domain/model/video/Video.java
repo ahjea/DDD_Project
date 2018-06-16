@@ -101,7 +101,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 
 			// parse customer date of birth
 			Calendar calDateOfBirth = Calendar.getInstance();
-			calDateOfBirth.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(customer.getDateOfBirth()));
+			calDateOfBirth.setTime(new SimpleDateFormat("yyyy-MM-dd").parse(customer.getDateOfBirth().toString()));
 
 			// get current date
 			Calendar calNow = Calendar.getInstance();
