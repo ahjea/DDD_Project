@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import video.rental.demo.domain.model.customer.Customer;
+import video.rental.demo.domain.model.customer.Code;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.PriceCode;
 import video.rental.demo.domain.model.video.Rating;
@@ -40,8 +41,8 @@ public class Interactor {
 		this.videoRepository = videoRepository;
 	}
 
-	public void clearRentals(int customerCode) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(customerCode);
+	public void clearRentals(String customerCode) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(customerCode));
 	
 		if (foundCustomer == null) {
 			System.out.println("No customer found");
@@ -60,8 +61,8 @@ public class Interactor {
 		}
 	}
 
-	public void returnVideo(int customerCode, String videoTitle) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(customerCode);
+	public void returnVideo(String customerCode, String videoTitle) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(customerCode));
 		if (foundCustomer == null)
 			return;
 	
@@ -92,8 +93,8 @@ public class Interactor {
 		}
 	}
 	
-	public String getCustomerReport(int code) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(code);
+	public String getCustomerReport(String code) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(code));
 		if (foundCustomer != null) {
 			return foundCustomer.getReport();
 		}
@@ -102,8 +103,8 @@ public class Interactor {
 		}
 	}
 
-	public void rentVideo(int code, String videoTitle) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(code);
+	public void rentVideo(String code, String videoTitle) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(code));
 		if (foundCustomer == null)
 			return;
 		
@@ -138,8 +139,8 @@ public class Interactor {
 		}
 	}
 
-	public void registerCustomer(String name, int code, String dateOfBirth) {
-		Customer customer = new Customer(code, name, dateOfBirth);
+	public void registerCustomer(String name, String code, String dateOfBirth) {
+		Customer customer = new Customer(new Code(code), name, dateOfBirth);
 		getCustomerRepository().saveCustomer(customer);
 	}
 

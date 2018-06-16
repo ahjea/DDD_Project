@@ -16,7 +16,7 @@ import video.rental.demo.domain.model.video.PriceCode;
 @Entity
 public class Customer implements video.rental.demo.domain.shared.Entity<Customer> {
 	@Id
-	private int code;
+	private Code code;
 	private String name;
 	private String dateOfBirth;
 
@@ -26,13 +26,13 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 	public Customer() {	// for hibernate
 	}
 
-	public Customer(int code, String name, String dateOfBirth) {
+	public Customer(Code code, String name, String dateOfBirth) {
 		this.code = code;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public int getCode() {
+	public Code getCode() {
 		return code;
 	}
 

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import video.rental.demo.domain.model.customer.Customer;
+import video.rental.demo.domain.model.customer.Code;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.Rating;
 import video.rental.demo.domain.model.video.Type;
@@ -16,8 +17,8 @@ import video.rental.demo.domain.model.video.VideoRepository;
 public class SampleGenerator {
 
 	public static void generateSamples(CustomerRepository customerRepository, VideoRepository videoRepository) {
-		Customer james = new Customer(0, "James", "1975-5-15");
-		Customer brown = new Customer(1, "Brown", "2001-3-17");
+		Customer james = new Customer(new Code("0"), "James", "1975-5-15");
+		Customer brown = new Customer(new Code("1"), "Brown", "2001-3-17");
 		customerRepository.saveCustomer(james);
 		customerRepository.saveCustomer(brown);
 	

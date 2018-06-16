@@ -62,14 +62,14 @@ public class CmdUI {
 
 	public void clearRentals() {
 		System.out.println("Enter customer code: ");
-		int customerCode = scanner.nextInt();
+		String customerCode = scanner.next();
 
 		interactor.clearRentals(customerCode);
 	}
 
 	public void returnVideo() {
 		System.out.println("Enter customer code: ");
-		int customerCode = scanner.nextInt();
+		String customerCode = scanner.next();
 		
 		System.out.println("Enter video title to return: ");
 		String videoTitle = scanner.next();
@@ -93,7 +93,7 @@ public class CmdUI {
 
 	public void getCustomerReport() {
 		System.out.println("Enter customer code: ");
-		int code = scanner.nextInt();
+		String code = scanner.next();
 
 		String result = interactor.getCustomerReport(code);
 		
@@ -106,7 +106,7 @@ public class CmdUI {
 
 	public void rentVideo() {
 		System.out.println("Enter customer code: ");
-		int code = scanner.nextInt();
+		String code = scanner.next();
 
 		System.out.println("Enter video title to rent: ");
 		String videoTitle = scanner.next();
@@ -120,7 +120,7 @@ public class CmdUI {
 			String name = scanner.next();
 
 			System.out.println("Enter customer code: ");
-			int code = scanner.nextInt();
+			String code = scanner.next();
 
 			System.out.println("Enter customer birthday: ");
 			String dateOfBirth = scanner.next();

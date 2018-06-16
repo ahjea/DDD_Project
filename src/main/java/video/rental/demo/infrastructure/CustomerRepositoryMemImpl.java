@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import video.rental.demo.domain.model.customer.Customer;
+import video.rental.demo.domain.model.customer.Code;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 
 public class CustomerRepositoryMemImpl implements CustomerRepository {	
-	private Map<Integer, Customer> customers = new HashMap<>();
+	private Map<Code, Customer> customers = new HashMap<>();
 
 	@Override
-	public Customer findCustomerById(int code) {
+	public Customer findCustomerById(Code code) {
 		// TODO Auto-generated method stub
 		return customers.get(code);
 	}
