@@ -7,7 +7,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import video.rental.demo.domain.model.customer.Customer;
-import video.rental.demo.domain.model.customer.Code;
+import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 
 public class CustomerRepositoryDBImpl implements CustomerRepository{
@@ -23,7 +23,7 @@ public class CustomerRepositoryDBImpl implements CustomerRepository{
 	 * @see video.rental.demo.Repository#findCustomerById(int)
 	 */
 	@Override
-	public Customer findCustomerById(Code code) {
+	public Customer findCustomerById(CustomerID code) {
 		CustomerRepositoryDBImpl.getEm().getTransaction().begin();
 		Customer customer = CustomerRepositoryDBImpl.getEm().find(Customer.class, code);
 		CustomerRepositoryDBImpl.getEm().getTransaction().commit();

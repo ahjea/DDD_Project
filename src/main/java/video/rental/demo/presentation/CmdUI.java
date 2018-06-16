@@ -2,7 +2,7 @@ package video.rental.demo.presentation;
 
 import java.util.Scanner;
 
-import video.rental.demo.application.Interactor;
+import video.rental.demo.application.impl.Interactor;
 
 /*
  * �뵒鍮� �뿊�꽭�뒪 遺꾨━

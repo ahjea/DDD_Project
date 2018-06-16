@@ -2,10 +2,10 @@ package video.rental.demo.domain.model.customer;
 
 import video.rental.demo.domain.shared.ValueObject;
 
-public class Code implements ValueObject<Code>{
+public class CustomerID implements ValueObject<CustomerID>{
 	private String code;
 	
-	public Code(final String code) {
+	public CustomerID(final String code) {
 		this.code = code;
 	}
 
@@ -15,7 +15,7 @@ public class Code implements ValueObject<Code>{
 	}
 	
 	@Override
-	public boolean sameValueAs(final Code other) {
+	public boolean sameValueAs(final CustomerID other) {
 		// TODO Auto-generated method stub
 		return this.equals(other);
 	}

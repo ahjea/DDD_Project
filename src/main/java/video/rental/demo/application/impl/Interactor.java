@@ -1,11 +1,11 @@
-package video.rental.demo.application;
+package video.rental.demo.application.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import video.rental.demo.domain.model.customer.Customer;
-import video.rental.demo.domain.model.customer.Code;
+import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.Name;
 import video.rental.demo.domain.model.customer.DateOfBirth;
 import video.rental.demo.domain.model.customer.CustomerRepository;
@@ -15,6 +15,7 @@ import video.rental.demo.domain.model.video.Type;
 import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.VideoRepository;
 
 public class Interactor {
@@ -31,25 +32,25 @@ public class Interactor {
 		return customerRepository;
 	}
 	
-	public VideoRepository getVideoRepository() {
-		return videoRepository;
-	}
-
 	public void setCustomerRepository(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
 	}
 
+	public VideoRepository getVideoRepository() {
+		return videoRepository;
+	}
+	
 	public void setVideoRepository(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
 	}
 
 	public void clearRentals(String customerCode) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(customerCode));
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerCode));
 	
 		if (foundCustomer == null) {
 			System.out.println("No customer found");
 		} else {
-			System.out.println("Id: " + foundCustomer.getCode() + "\nName: " + foundCustomer.getName() + "\tRentals: "
+			System.out.println("Id: " + foundCustomer.getCustomerID() + "\nName: " + foundCustomer.getName() + "\tRentals: "
 					+ foundCustomer.getRentals().size());
 			for (Rental rental : foundCustomer.getRentals()) {
 				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
@@ -63,8 +64,9 @@ public class Interactor {
 		}
 	}
 
+	//duplicated
 	public void returnVideo(String customerCode, String videoTitle) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(customerCode));
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerCode));
 		if (foundCustomer == null)
 			return;
 	
@@ -95,8 +97,8 @@ public class Interactor {
 		}
 	}
 	
-	public String getCustomerReport(String code) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(code));
+	public String getCustomerReport(String customerid) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerid));
 		if (foundCustomer != null) {
 			return foundCustomer.getReport();
 		}
@@ -105,12 +107,13 @@ public class Interactor {
 		}
 	}
 
-	public void rentVideo(String code, String videoTitle) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new Code(code));
+	//duplicated
+	public void rentVideo(String code, String videoid) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(code));
 		if (foundCustomer == null)
 			return;
 		
-		Video foundVideo = getVideoRepository().findVideoByTitle(new Title(videoTitle));
+		Video foundVideo = getVideoRepository().findVideoByID(new VideoID(videoid));
 	
 		if (foundVideo == null)
 			return;
@@ -131,7 +134,7 @@ public class Interactor {
 		List<Customer> customers = getCustomerRepository().findAllCustomers();
 	
 		for (Customer customer : customers) {
-			System.out.println("ID: " + customer.getCode() + "\nName: " + customer.getName() + "\tRentals: "
+			System.out.println("ID: " + customer.getCustomerID() + "\nName: " + customer.getName() + "\tRentals: "
 					+ customer.getRentals().size());
 			for (Rental rental : customer.getRentals()) {
 				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
@@ -142,7 +145,7 @@ public class Interactor {
 	}
 
 	public void registerCustomer(String name, String code, String dateOfBirth) {
-		Customer customer = new Customer(new Code(code), new Name(name), new DateOfBirth(dateOfBirth));
+		Customer customer = new Customer(new CustomerID(code), new Name(name), new DateOfBirth(dateOfBirth));
 		getCustomerRepository().saveCustomer(customer);
 	}
 

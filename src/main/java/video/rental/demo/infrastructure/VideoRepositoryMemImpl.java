@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.VideoRepository;
 
@@ -13,9 +14,9 @@ public class VideoRepositoryMemImpl implements VideoRepository {
 	private Map<Title, Video> videos = new HashMap<>();
 
 	@Override
-	public Video findVideoByTitle(Title title) {
+	public Video findVideoByID(VideoID videoid) {
 		// TODO Auto-generated method stub
-		return videos.get(title);
+		return videos.get(videoid);
 	}
 
 	@Override

@@ -16,7 +16,7 @@ import video.rental.demo.domain.model.video.PriceCode;
 @Entity
 public class Customer implements video.rental.demo.domain.shared.Entity<Customer> {
 	@Id
-	private Code code;
+	private CustomerID cutomerid;
 	private Name name;
 	private DateOfBirth dateOfBirth;
 
@@ -26,14 +26,14 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 	public Customer() {	// for hibernate
 	}
 
-	public Customer(Code code, Name name, DateOfBirth dateOfBirth) {
-		this.code = code;
+	public Customer(CustomerID code, Name name, DateOfBirth dateOfBirth) {
+		this.cutomerid = code;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Code getCode() {
-		return code;
+	public CustomerID getCustomerID() {
+		return cutomerid;
 	}
 
 	public Name getName() {
@@ -111,7 +111,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 	@Override
 	public boolean sameIdentityAs(Customer other) {
 		// TODO Auto-generated method stub
-		if(other.code == this.getCode()) return true;
+		if(other.cutomerid == this.getCustomerID()) return true;
 		else return false;
 	}
 

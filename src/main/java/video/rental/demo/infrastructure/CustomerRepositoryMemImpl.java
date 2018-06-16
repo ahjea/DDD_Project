@@ -6,14 +6,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import video.rental.demo.domain.model.customer.Customer;
-import video.rental.demo.domain.model.customer.Code;
+import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 
 public class CustomerRepositoryMemImpl implements CustomerRepository {	
-	private Map<Code, Customer> customers = new HashMap<>();
+	private Map<CustomerID, Customer> customers = new HashMap<>();
 
 	@Override
-	public Customer findCustomerById(Code code) {
+	public Customer findCustomerById(CustomerID code) {
 		// TODO Auto-generated method stub
 		return customers.get(code);
 	}
@@ -27,6 +27,6 @@ public class CustomerRepositoryMemImpl implements CustomerRepository {
 	@Override
 	public void saveCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-		customers.put(customer.getCode(), customer);
+		customers.put(customer.getCustomerID(), customer);
 	}
 }
