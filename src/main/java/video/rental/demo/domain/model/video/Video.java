@@ -20,7 +20,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	private String title;
 	private Rating videoRating;
 	private int priceCode;
-	private int VideoID;
+	private VideoID videoID;
 
 	public static final int REGULAR = 1;
 	public static final int NEW_RELEASE = 2;
@@ -139,18 +139,18 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		return false;
 	}
 
-	public int getVideoID() {
-		return VideoID;
+	public VideoID getVideoID() {
+		return videoID;
 	}
 
-	public void setVideoID(int videoID) {
-		VideoID = videoID;
+	public void setVideoID(VideoID videoID) {
+		this.videoID = videoID;
 	}
 	
 	@Override
 	public boolean sameIdentityAs(Video other) {
 		// TODO Auto-generated method stub
-		if(other.VideoID == this.getVideoID()) return true;
+		if(other.videoID == this.getVideoID()) return true;
 		else return false;
 	}
 
