@@ -7,6 +7,7 @@ import java.util.List;
 import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.Rating;
+import video.rental.demo.domain.model.video.Type;
 import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoRepository;
@@ -142,13 +143,20 @@ public class Interactor {
 
 	public void registerVideo(String title, int videoType, int priceCode, int videoRating) {
 		Date registeredDate = new Date();
+		
 		Rating rating;
 		if (videoRating == 1) rating = Rating.TWELVE;
 		else if (videoRating == 2) rating = Rating.FIFTEEN;
 		else if (videoRating == 3) rating = Rating.EIGHTEEN;
 		else throw new IllegalArgumentException("No such rating " + videoRating);
 		
-		Video video = new Video(title, videoType, priceCode, rating, registeredDate);
+		Type type;
+		if (videoType == 1) type = Type.VHS;
+		else if (videoType == 2) type = Type.CD;
+		else if (videoType == 3) type = Type.DVD;
+		else throw new IllegalArgumentException("No such type " + videoType);
+		
+		Video video = new Video(title, type, priceCode, rating, registeredDate);
 	
 		getVideoRepository().saveVideo(video);
 	}

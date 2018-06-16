@@ -72,13 +72,13 @@ public class Rental implements ValueObject<Rental> {
 	public int getDaysRentedLimit() {
 		int limit = 0;
 		switch (video.getVideoType()) {
-		case Video.VHS:
+		case VHS:
 			limit = 5;
 			break;
-		case Video.CD:
+		case CD:
 			limit = 3;
 			break;
-		case Video.DVD:
+		case DVD:
 			limit = 2;
 			break;
 		}

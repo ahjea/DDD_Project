@@ -26,17 +26,14 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	public static final int NEW_RELEASE = 2;
 	public static final int CHILDREN = 3;
 
-	private int videoType;
-	public static final int VHS = 1;
-	public static final int CD = 2;
-	public static final int DVD = 3;
+	private Type videoType;
 
 	private Date registeredDate;
 	private boolean rented;
 
 	public Video() {}	// for hibernate
 
-	public Video(String title, int videoType, int priceCode, Rating videoRating, Date registeredDate) {
+	public Video(String title, Type videoType, int priceCode, Rating videoRating, Date registeredDate) {
 		this.title = title; 
 		this.videoType = videoType;
 		this.setPriceCode(priceCode);
@@ -85,7 +82,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		return registeredDate;
 	}
 
-	public int getVideoType() {
+	public Type getVideoType() {
 		return videoType;
 	}
 
