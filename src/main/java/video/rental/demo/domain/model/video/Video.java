@@ -19,12 +19,8 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	@Id
 	private Title title;
 	private Rating videoRating;
-	private int priceCode;
+	private PriceCode priceCode;
 	private VideoID videoID;
-
-	public static final int REGULAR = 1;
-	public static final int NEW_RELEASE = 2;
-	public static final int CHILDREN = 3;
 
 	private Type videoType;
 
@@ -33,10 +29,10 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 
 	public Video() {}	// for hibernate
 
-	public Video(Title title, Type videoType, int priceCode, Rating videoRating, Date registeredDate) {
+	public Video(Title title, Type videoType, PriceCode priceCode, Rating videoRating, Date registeredDate) {
 		this.title = title; 
 		this.videoType = videoType;
-		this.setPriceCode(priceCode);
+		this.priceCode = priceCode;
 		this.videoRating = videoRating;
 		this.registeredDate = registeredDate;
 	}
@@ -54,11 +50,11 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		return pentalty;
 	}
 
-	public int getPriceCode() {
+	public PriceCode getPriceCode() {
 		return priceCode;
 	}
 
-	public void setPriceCode(int priceCode) {
+	public void setPriceCode(PriceCode priceCode) {
 		this.priceCode = priceCode;
 	}
 

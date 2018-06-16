@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.PriceCode;
 
 @Entity
 public class Customer implements video.rental.demo.domain.shared.Entity<Customer> {
@@ -67,15 +68,15 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 			daysRented = each.getDaysRented();
 
 			switch (each.getVideo().getPriceCode()) {
-			case Video.REGULAR:
+			case REGULAR:
 				eachCharge += 2;
 				if (daysRented > 2)
 					eachCharge += (daysRented - 2) * 1.5;
 				break;
-			case Video.NEW_RELEASE:
+			case NEW_RELEASE:
 				eachCharge = daysRented * 3;
 				break;
-			case Video.CHILDREN:
+			case CHILDREN:
 				eachCharge += 1.5;
 				if (daysRented > 3)
 					eachCharge += (daysRented - 3) * 1.5;
@@ -83,7 +84,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 			}
 			
 			eachPoint++;
-			if ((each.getVideo().getPriceCode() == Video.NEW_RELEASE))
+			if ((each.getVideo().getPriceCode() == PriceCode.NEW_RELEASE))
 				eachPoint++;
 
 			if (daysRented > each.getDaysRentedLimit())
