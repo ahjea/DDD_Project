@@ -3,15 +3,10 @@ package video.rental.demo.domain.model.video;
 import video.rental.demo.domain.shared.ValueObject;
 
 public class VideoID implements ValueObject<VideoID>{
-	private String id;
+	private int id;
 	
-	public VideoID(final String id) {
+	public VideoID(final int id) {
 		this.id = id;
-	}
-	
-	@Override
-	public String toString() {
-		return id;
 	}
 	
 	@Override
