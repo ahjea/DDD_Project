@@ -6,9 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
-import video.rental.demo.domain.Customer;
-import video.rental.demo.domain.Repository;
-import video.rental.demo.domain.Video;
+import video.rental.demo.domain.model.Customer;
+import video.rental.demo.domain.model.Repository;
+import video.rental.demo.domain.model.Video;
 
 public class RepositoryDBImpl implements Repository {
 

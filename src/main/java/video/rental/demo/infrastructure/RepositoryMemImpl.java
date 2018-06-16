@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import video.rental.demo.domain.Customer;
-import video.rental.demo.domain.Repository;
-import video.rental.demo.domain.Video;
+import video.rental.demo.domain.model.Customer;
+import video.rental.demo.domain.model.Repository;
+import video.rental.demo.domain.model.Video;
 
 public class RepositoryMemImpl implements Repository{
 	

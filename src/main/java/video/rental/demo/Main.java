@@ -2,7 +2,7 @@ package video.rental.demo;
 
 import video.rental.demo.application.Interactor;
 import video.rental.demo.application.utils.SampleGenerator;
-import video.rental.demo.domain.Repository;
+import video.rental.demo.domain.model.Repository;
 import video.rental.demo.infrastructure.RepositoryDBImpl;
 import video.rental.demo.presentation.CmdUI;
 
