@@ -11,8 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="video.rental.demo.domain.model.Customer" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/Customer.java" binary="false" 
+  <class id="2" language="java" name="video.rental.demo.domain.model.customer.Customer" project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/customer/Customer.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="436" y="85"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -21,8 +21,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="video.rental.demo.domain.model.Rating" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/Rating.java" binary="false" 
+  <enumeration id="3" language="java" name="video.rental.demo.domain.model.video.Rating" project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/video/Rating.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="602" y="12"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -31,8 +31,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="4" language="java" name="video.rental.demo.domain.model.Rental" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/Rental.java" binary="false" 
+  <class id="4" language="java" name="video.rental.demo.domain.model.video.Rental" project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/video/Rental.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="616" y="276"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -41,9 +41,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="5" language="java" name="video.rental.demo.domain.model.Repository" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/Repository.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <interface id="5" language="java" name="video.rental.demo.domain.model.customer.CustomerRepository" 
+    project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/customer/CustomerRepository.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="422" y="330"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -51,8 +52,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="6" language="java" name="video.rental.demo.domain.model.Video" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/Video.java" binary="false" 
+  <class id="6" language="java" name="video.rental.demo.domain.model.video.Video" project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/domain/model/video/Video.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="805" y="186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -72,9 +73,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="8" language="java" name="video.rental.demo.infrastructure.RepositoryDBImpl" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/infrastructure/RepositoryDBImpl.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="video.rental.demo.infrastructure.CustomerRepositoryDBImpl" 
+    project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/infrastructure/CustomerRepositoryDBImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="299" y="712"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,9 +84,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="video.rental.demo.infrastructure.RepositoryMemImpl" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/infrastructure/RepositoryMemImpl.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="video.rental.demo.infrastructure.CustomerRepositoryMemImpl" 
+    project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/infrastructure/CustomerRepositoryMemImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="533" y="698"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -104,90 +107,78 @@
   </class>  
   <association id="11">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="12" name="videos">        
+      <attribute id="12" name="customers">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="13" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="14">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="15" name="rentals">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="16" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="18" name="videoRating">        
+      <attribute id="15" name="videoRating">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
+      <multiplicity id="16" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="21" name="repository">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="23">    
+  <realization id="17">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <association id="24">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="25" name="customers">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="26" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="27">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <association id="28">    
+  <association id="18">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="29" name="video">        
+      <attribute id="19" name="video">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="30" minimum="0" maximum="1">        
+      <multiplicity id="20" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="32" name="interactor">        
+  <realization id="21">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="22">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="23" name="rentals">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
+      <multiplicity id="24" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="videos">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="29" name="interactor">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    

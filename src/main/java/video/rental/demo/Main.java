@@ -2,8 +2,10 @@ package video.rental.demo;
 
 import video.rental.demo.application.Interactor;
 import video.rental.demo.application.utils.SampleGenerator;
-import video.rental.demo.domain.model.Repository;
-import video.rental.demo.infrastructure.RepositoryDBImpl;
+import video.rental.demo.domain.model.customer.CustomerRepository;
+import video.rental.demo.domain.model.video.VideoRepository;
+import video.rental.demo.infrastructure.CustomerRepositoryDBImpl;
+import video.rental.demo.infrastructure.VideoRepositoryDBImpl;
 import video.rental.demo.presentation.CmdUI;
 
 public class Main
@@ -12,11 +14,12 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-		Repository repository = new RepositoryDBImpl();
+		CustomerRepository customerRepository = new CustomerRepositoryDBImpl();
+		VideoRepository videoRepository = new VideoRepositoryDBImpl();
 	
-		SampleGenerator.generateSamples(repository);
+		SampleGenerator.generateSamples(customerRepository, videoRepository);
 		
-		Interactor interactor = new Interactor(repository);
+		Interactor interactor = new Interactor(customerRepository, videoRepository);
 		
 		ui = new CmdUI(interactor);
 		

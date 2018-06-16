@@ -1,4 +1,4 @@
-package video.rental.demo.domain.model;
+package video.rental.demo.domain.model.customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import video.rental.demo.domain.model.video.Rental;
+import video.rental.demo.domain.model.video.Video;
 
 @Entity
 public class Customer {

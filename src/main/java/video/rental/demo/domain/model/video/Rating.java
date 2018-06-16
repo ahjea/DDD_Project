@@ -1,4 +1,4 @@
-package video.rental.demo.domain.model;
+package video.rental.demo.domain.model.video;
 
 import video.rental.demo.domain.shared.ValueObject;
 

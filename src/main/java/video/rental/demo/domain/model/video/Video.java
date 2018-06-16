@@ -1,4 +1,4 @@
-package video.rental.demo.domain.model;
+package video.rental.demo.domain.model.video;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import video.rental.demo.domain.model.customer.Customer;
 
 @Entity
 @Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" }) })

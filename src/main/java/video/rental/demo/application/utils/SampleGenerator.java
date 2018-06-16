@@ -3,26 +3,27 @@ package video.rental.demo.application.utils;
 import java.util.Date;
 import java.util.List;
 
-import video.rental.demo.domain.model.Customer;
-import video.rental.demo.domain.model.Rating;
-import video.rental.demo.domain.model.Rental;
-import video.rental.demo.domain.model.Repository;
-import video.rental.demo.domain.model.Video;
+import video.rental.demo.domain.model.customer.Customer;
+import video.rental.demo.domain.model.customer.CustomerRepository;
+import video.rental.demo.domain.model.video.Rating;
+import video.rental.demo.domain.model.video.Rental;
+import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.VideoRepository;
 
 public class SampleGenerator {
 
-	public static void generateSamples(Repository repository) {
+	public static void generateSamples(CustomerRepository customerRepository, VideoRepository videoRepository) {
 		Customer james = new Customer(0, "James", "1975-5-15");
 		Customer brown = new Customer(1, "Brown", "2001-3-17");
-		repository.saveCustomer(james);
-		repository.saveCustomer(brown);
+		customerRepository.saveCustomer(james);
+		customerRepository.saveCustomer(brown);
 	
 		Video v1 = new Video("V1", Video.CD, Video.REGULAR, Rating.FIFTEEN, new Date());
 		v1.setRented(true);
 		Video v2 = new Video("V2", Video.DVD, Video.NEW_RELEASE, Rating.TWELVE, new Date());
 		v2.setRented(true);
-		repository.saveVideo(v1);
-		repository.saveVideo(v2);
+		videoRepository.saveVideo(v1);
+		videoRepository.saveVideo(v2);
 	
 		Rental r1 = new Rental(v1);
 		Rental r2 = new Rental(v2);
@@ -31,7 +32,7 @@ public class SampleGenerator {
 		rentals.add(r1);
 		rentals.add(r2);
 		james.setRentals(rentals);
-		repository.saveCustomer(james);
+		customerRepository.saveCustomer(james);
 	}
 
 }
