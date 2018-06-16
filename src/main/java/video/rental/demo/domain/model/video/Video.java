@@ -15,11 +15,12 @@ import video.rental.demo.domain.model.customer.Customer;
 
 @Entity
 @Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" }) })
-public class Video{
+public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	@Id
 	private String title;
 	private Rating videoRating;
 	private int priceCode;
+	private int VideoID;
 
 	public static final int REGULAR = 1;
 	public static final int NEW_RELEASE = 2;
@@ -139,6 +140,21 @@ public class Video{
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public int getVideoID() {
+		return VideoID;
+	}
+
+	public void setVideoID(int videoID) {
+		VideoID = videoID;
+	}
+	
+	@Override
+	public boolean sameIdentityAs(Video other) {
+		// TODO Auto-generated method stub
+		if(other.VideoID == this.getVideoID()) return true;
+		else return false;
 	}
 
 }

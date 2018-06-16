@@ -13,13 +13,12 @@ import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Video;
 
 @Entity
-public class Customer {
+public class Customer implements video.rental.demo.domain.shared.Entity<Customer> {
 	@Id
 	private int code;
 	private String name;
 	private String dateOfBirth;
 
-	// customer가 save되면 rental도 save, cascading save
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Rental> rentals = new ArrayList<Rental>();
 
@@ -106,6 +105,13 @@ public class Customer {
 			System.out.println("Congrat! You earned two free coupon");
 		}
 		return result;
+	}
+
+	@Override
+	public boolean sameIdentityAs(Customer other) {
+		// TODO Auto-generated method stub
+		if(other.code == this.getCode()) return true;
+		else return false;
 	}
 
 }
