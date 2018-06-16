@@ -7,6 +7,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.VideoRepository;
 
 public class VideoRepositoryDBImpl implements VideoRepository{
@@ -22,7 +23,7 @@ public class VideoRepositoryDBImpl implements VideoRepository{
 	 * @see video.rental.demo.Repository#findVideoByTitle(java.lang.String)
 	 */
 	@Override
-	public Video findVideoByTitle(String title) {
+	public Video findVideoByTitle(Title title) {
 		CustomerRepositoryDBImpl.getEm().getTransaction().begin();
 		Video video = CustomerRepositoryDBImpl.getEm().find(Video.class, title);
 		CustomerRepositoryDBImpl.getEm().getTransaction().commit();

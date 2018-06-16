@@ -2,20 +2,20 @@ package video.rental.demo.domain.model.video;
 
 import video.rental.demo.domain.shared.ValueObject;
 
-public class VideoID implements ValueObject<VideoID>{
-	private String id;
+public class Title implements ValueObject<Title>{
+	private String title;
 	
-	public VideoID(final String id) {
-		this.id = id;
+	public Title(final String title) {
+		this.title = title;
 	}
 	
 	@Override
 	public String toString() {
-		return id;
+		return title;
 	}
 	
 	@Override
-	public boolean sameValueAs(final VideoID other) {
+	public boolean sameValueAs(final Title other) {
 		// TODO Auto-generated method stub
 		return this.equals(other);
 	}

@@ -6,7 +6,7 @@ public interface VideoRepository {
 
 	List<Video> findAllVideos();
 
-	Video findVideoByTitle(String title);
+	Video findVideoByTitle(Title title);
 
 	void saveVideo(Video video);
 	

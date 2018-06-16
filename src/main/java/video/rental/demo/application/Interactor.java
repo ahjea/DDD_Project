@@ -8,6 +8,7 @@ import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.Rating;
 import video.rental.demo.domain.model.video.Type;
+import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoRepository;
@@ -105,7 +106,7 @@ public class Interactor {
 		if (foundCustomer == null)
 			return;
 		
-		Video foundVideo = getVideoRepository().findVideoByTitle(videoTitle);
+		Video foundVideo = getVideoRepository().findVideoByTitle(new Title(videoTitle));
 	
 		if (foundVideo == null)
 			return;
@@ -141,7 +142,7 @@ public class Interactor {
 		getCustomerRepository().saveCustomer(customer);
 	}
 
-	public void registerVideo(String title, int videoType, int priceCode, int videoRating) {
+	public void registerVideo(String videoTitle, int videoType, int priceCode, int videoRating) {
 		Date registeredDate = new Date();
 		
 		Rating rating;
@@ -155,6 +156,9 @@ public class Interactor {
 		else if (videoType == 2) type = Type.CD;
 		else if (videoType == 3) type = Type.DVD;
 		else throw new IllegalArgumentException("No such type " + videoType);
+		
+		Title title;
+		title = new Title(videoTitle);
 		
 		Video video = new Video(title, type, priceCode, rating, registeredDate);
 	

@@ -17,7 +17,7 @@ import video.rental.demo.domain.model.customer.Customer;
 @Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" }) })
 public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	@Id
-	private String title;
+	private Title title;
 	private Rating videoRating;
 	private int priceCode;
 	private VideoID videoID;
@@ -33,7 +33,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 
 	public Video() {}	// for hibernate
 
-	public Video(String title, Type videoType, int priceCode, Rating videoRating, Date registeredDate) {
+	public Video(Title title, Type videoType, int priceCode, Rating videoRating, Date registeredDate) {
 		this.title = title; 
 		this.videoType = videoType;
 		this.setPriceCode(priceCode);
@@ -62,7 +62,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		this.priceCode = priceCode;
 	}
 
-	public String getTitle() {
+	public Title getTitle() {
 		return title;
 	}
 
