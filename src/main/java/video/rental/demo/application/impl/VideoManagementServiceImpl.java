@@ -37,7 +37,7 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 		
 		String result = "";	
 		for (Video video : videos) {
-			result += "Video ID: "+ video.getVideoIDNumber() +
+			result += "Video ID: "+ video.getVideoID() +
 					"\tVideo type: " + video.getVideoType() + 
 					"\tPrice code: " + video.getPriceCode() + 
 					"\tRating: " + video.getVideoRating() +
@@ -52,33 +52,12 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	 * @see video.rental.demo.application.impl.VideoManagementService#registerVideo(java.lang.String, int, int, int)
 	 */
 	@Override
-	public void registerVideo(String videoTitle, int videoType, int videoPriceCode, int videoRating) {
+	public void registerVideo(Title videoTitle, Type videoType, PriceCode videoPriceCode, Rating videoRating) {
 		Date registeredDate = new Date();
 		
 		int videoid = videoRepository.findAllVideos().size()+1;
 		
-		Rating rating;
-		if (videoRating == 1) rating = Rating.TWELVE;
-		else if (videoRating == 2) rating = Rating.FIFTEEN;
-		else if (videoRating == 3) rating = Rating.EIGHTEEN;
-		else throw new IllegalArgumentException("No such rating " + videoRating);
-		
-		Type type;
-		if (videoType == 1) type = Type.VHS;
-		else if (videoType == 2) type = Type.CD;
-		else if (videoType == 3) type = Type.DVD;
-		else throw new IllegalArgumentException("No such type " + videoType);
-		
-		PriceCode priceCode;
-		if (videoPriceCode == 1) priceCode = PriceCode.REGULAR;
-		else if (videoPriceCode == 2) priceCode = PriceCode.NEW_RELEASE;
-		else if (videoPriceCode == 3) priceCode = PriceCode.CHILDREN;
-		else throw new IllegalArgumentException("No such type " + videoPriceCode);
-		
-		Title title;
-		title = new Title(videoTitle);
-		
-		Video video = new Video(new VideoID(videoid),title, type, priceCode, rating, registeredDate);
+		Video video = new Video(new VideoID(videoid), videoTitle, videoType, videoPriceCode, videoRating, registeredDate);
 	
 		getVideoRepository().saveVideo(video);
 	}

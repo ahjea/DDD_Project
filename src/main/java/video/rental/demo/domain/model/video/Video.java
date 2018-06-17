@@ -64,6 +64,10 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	public Title getTitle() {
 		return title;
 	}
+	
+	public VideoID getID() {
+		return videoID;
+	}
 
 	public Rating getVideoRating() {
 		return videoRating;
@@ -140,10 +144,6 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 
 	public VideoID getVideoID() {
 		return videoID;
-	}
-	
-	public int getVideoIDNumber() {
-		return videoID.getId();
 	}
 
 	public void setVideoID(VideoID videoID) {

@@ -1,7 +1,10 @@
 package video.rental.demo.application;
 
+import video.rental.demo.domain.model.customer.CustomerID;
+import video.rental.demo.domain.model.video.VideoID;
+
 public interface RentService {
-	void rentVideo(String code, int videoid);
-	void returnVideo(String customerCode, String videoTitle);
-	String clearRentals(String customerCode);
+	void rentVideo(CustomerID customerID, VideoID videoID);
+	void returnVideo(CustomerID customerID, VideoID videoID);
+	String clearRentals(CustomerID customerID);
 }

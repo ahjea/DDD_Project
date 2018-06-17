@@ -9,6 +9,11 @@ import video.rental.demo.application.VideoManagementService;
 import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.DateOfBirth;
 import video.rental.demo.domain.model.customer.Name;
+import video.rental.demo.domain.model.video.PriceCode;
+import video.rental.demo.domain.model.video.Rating;
+import video.rental.demo.domain.model.video.Title;
+import video.rental.demo.domain.model.video.Type;
+import video.rental.demo.domain.model.video.VideoID;
 
 public class CmdUI implements UI {
 	
@@ -68,19 +73,19 @@ public class CmdUI implements UI {
 
 	public void clearRentals() {
 		System.out.println("Enter customer code: ");
-		String customerCode = scanner.next();
+		CustomerID customerID = new CustomerID(scanner.next());
 
-		System.out.println(getRentService().clearRentals(customerCode));
+		System.out.println(getRentService().clearRentals(customerID));
 	}
 
 	public void returnVideo() {
 		System.out.println("Enter customer code: ");
-		String customerCode = scanner.next();
+		CustomerID customerID = new CustomerID(scanner.next());
 		
 		System.out.println("Enter video ID to return: ");
-		String videoID = scanner.next();
+		VideoID videoID = new VideoID(scanner.next());
 		
-		getRentService().returnVideo(customerCode, videoID);
+		getRentService().returnVideo(customerID, videoID);
 	}
 
 	public void listVideos() {
@@ -112,12 +117,12 @@ public class CmdUI implements UI {
 
 	public void rentVideo() {
 		System.out.println("Enter customer code: ");
-		String code = scanner.next();
+		CustomerID customerID = new CustomerID(scanner.next());
 
 		System.out.println("Enter video id to rent: ");
-		int VideoID = scanner.nextInt();
+		VideoID VideoID = new VideoID(scanner.nextInt());
 		
-		getRentService().rentVideo(code, VideoID);
+		getRentService().rentVideo(customerID, VideoID);
 	}
 
 	public void register(String object) {
@@ -135,18 +140,36 @@ public class CmdUI implements UI {
 			getCustomerManagementService().registerCustomer(name, id, dateOfBirth);
 		} else {
 			System.out.println("Enter video title to register: ");
-			String title = scanner.next();
-
+			Title title = new Title(scanner.next());
+			
 			System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
 			int videoType = scanner.nextInt();
+			
+			Type type;
+			if (videoType == 1) type = Type.VHS;
+			else if (videoType == 2) type = Type.CD;
+			else if (videoType == 3) type = Type.DVD;
+			else throw new IllegalArgumentException("No such type " + videoType);
 
 			System.out.println("Enter price code( 1 for Regular, 2 for New Release 3 for Children ):");
-			int priceCode = scanner.nextInt();
-
+			int videoPriceCode = scanner.nextInt();
+			
+			PriceCode priceCode;
+			if (videoPriceCode == 1) priceCode = PriceCode.REGULAR;
+			else if (videoPriceCode == 2) priceCode = PriceCode.NEW_RELEASE;
+			else if (videoPriceCode == 3) priceCode = PriceCode.CHILDREN;
+			else throw new IllegalArgumentException("No such type " + videoPriceCode);
+			
 			System.out.println("Enter video rating( 1 for 12, 2 for 15, 3 for 18 ):");
 			int videoRating = scanner.nextInt();
+
+			Rating rating;
+			if (videoRating == 1) rating = Rating.TWELVE;
+			else if (videoRating == 2) rating = Rating.FIFTEEN;
+			else if (videoRating == 3) rating = Rating.EIGHTEEN;
+			else throw new IllegalArgumentException("No such rating " + videoRating);
 			
-			getVideoManagementService().registerVideo(title, videoType, priceCode, videoRating);
+			getVideoManagementService().registerVideo(title, type, priceCode, rating);
 		}
 	}
 

@@ -38,12 +38,12 @@ public class RentServiceImpl implements RentService {
 		this.videorepository = videorepository;
 	}
 	
-	public void rentVideo(String code, int videoid) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(code));
+	public void rentVideo(CustomerID customerID, VideoID videoID) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(customerID);
 		if (foundCustomer == null)
 			return;
 		
-		Video foundVideo = getVideorepository().findVideoByID(new VideoID(videoid));
+		Video foundVideo = getVideorepository().findVideoByID(videoID);
 	
 		if (foundVideo == null)
 			return;
@@ -60,15 +60,15 @@ public class RentServiceImpl implements RentService {
 		}
 	}
 	
-	public void returnVideo(String customerCode, String videoTitle) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerCode));
+	public void returnVideo(CustomerID customerID, VideoID videoID) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(customerID);
 		if (foundCustomer == null)
 			return;
 	
 		List<Rental> customerRentals = foundCustomer.getRentals();
 	
 		for (Rental rental : customerRentals) {
-			if (rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented()) {
+			if (rental.getVideo().getID().equals(videoID) && rental.getVideo().isRented()) {
 				Video video = rental.returnVideo();
 				video.setRented(false);
 				getVideorepository().saveVideo(video);
@@ -79,8 +79,8 @@ public class RentServiceImpl implements RentService {
 		getCustomerRepository().saveCustomer(foundCustomer);
 	}
 	
-	public String clearRentals(String customerCode) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerCode));
+	public String clearRentals(CustomerID customerID) {
+		Customer foundCustomer = getCustomerRepository().findCustomerById(customerID);
 	
 		String result = "";
 		if (foundCustomer == null) {
