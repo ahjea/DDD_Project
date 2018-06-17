@@ -4,21 +4,20 @@ import java.util.Scanner;
 
 import video.rental.demo.presentation.UI;
 import video.rental.demo.application.RentService;
-import video.rental.demo.application.impl.CustomerManagementServiceImpl;
-import video.rental.demo.application.impl.RentServiceImpl;
-import video.rental.demo.application.impl.VideoManagementServiceImpl;
+import video.rental.demo.application.CustomerManagementService;
+import video.rental.demo.application.VideoManagementService;
 
 public class CmdUI implements UI {
 	
-	private CustomerManagementServiceImpl customermanagementserviceimpl;
-	private VideoManagementServiceImpl videomanagementserviceimpl;
-	private RentServiceImpl rentserviceimpl;
+	private CustomerManagementService customerManagementService;
+	private VideoManagementService videoManagementService;
+	private RentService rentService;
 	
-	public CmdUI(CustomerManagementServiceImpl customermanagementserviceimpl, VideoManagementServiceImpl videomanagementserviceimpl, RentServiceImpl rentserviceimpl) {
+	public CmdUI(CustomerManagementService customerManagementService, VideoManagementService videoManagementService, RentService rentService) {
 		super();
-		this.setCustomermanagementserviceimpl(customermanagementserviceimpl);
-		this.setVideomanagementserviceimpl(videomanagementserviceimpl);
-		this.setRentserviceimpl(rentserviceimpl);
+		this.setCustomerManagementService(customerManagementService);
+		this.setVideoManagementService(videoManagementService);
+		this.setRentservice(rentService);
 	}
 	
 	private static Scanner scanner = new Scanner(System.in);
@@ -68,7 +67,7 @@ public class CmdUI implements UI {
 		System.out.println("Enter customer code: ");
 		String customerCode = scanner.next();
 
-		getRentserviceimpl().clearRentals(customerCode);
+		getRentService().clearRentals(customerCode);
 	}
 
 	public void returnVideo() {
@@ -78,20 +77,20 @@ public class CmdUI implements UI {
 		System.out.println("Enter video ID to return: ");
 		String videoID = scanner.next();
 		
-		getRentserviceimpl().returnVideo(customerCode, videoID);
+		getRentService().returnVideo(customerCode, videoID);
 	}
 
 	public void listVideos() {
 		System.out.println("List of videos");
 
-		getVideomanagementserviceimpl().listVideos();
+		getVideoManagementService().listVideos();
 		System.out.println("End of list");
 	}
 
 	public void listCustomers() {
 		System.out.println("List of customers");
 
-		getCustomermanagementserviceimpl().listCustomers();
+		getCustomerManagementService().listCustomers();
 		System.out.println("End of list");
 	}
 
@@ -99,7 +98,7 @@ public class CmdUI implements UI {
 		System.out.println("Enter customer code: ");
 		String code = scanner.next();
 
-		String result = getCustomermanagementserviceimpl().getCustomerReport(code);
+		String result = getCustomerManagementService().getCustomerReport(code);
 		
 		if (result == null) {
 			System.out.println("No customer found");
@@ -115,7 +114,7 @@ public class CmdUI implements UI {
 		System.out.println("Enter video title to rent: ");
 		String videoTitle = scanner.next();
 
-		getRentserviceimpl().rentVideo(code, videoTitle);
+		getRentService().rentVideo(code, videoTitle);
 	}
 
 	public void register(String object) {
@@ -129,7 +128,7 @@ public class CmdUI implements UI {
 			System.out.println("Enter customer birthday: ");
 			String dateOfBirth = scanner.next();
 
-			getCustomermanagementserviceimpl().registerCustomer(name, code, dateOfBirth);
+			getCustomerManagementService().registerCustomer(name, code, dateOfBirth);
 		} else {
 			System.out.println("Enter video title to register: ");
 			String title = scanner.next();
@@ -143,7 +142,7 @@ public class CmdUI implements UI {
 			System.out.println("Enter video rating( 1 for 12, 2 for 15, 3 for 18 ):");
 			int videoRating = scanner.nextInt();
 			
-			getVideomanagementserviceimpl().registerVideo(title, videoType, priceCode, videoRating);
+			getVideoManagementService().registerVideo(title, videoType, priceCode, videoRating);
 		}
 	}
 
@@ -164,28 +163,28 @@ public class CmdUI implements UI {
 		return command;
 	}
 
-	public CustomerManagementServiceImpl getCustomermanagementserviceimpl() {
-		return customermanagementserviceimpl;
+	public CustomerManagementService getCustomerManagementService() {
+		return customerManagementService;
 	}
 
-	public void setCustomermanagementserviceimpl(CustomerManagementServiceImpl customermanagementserviceimpl) {
-		this.customermanagementserviceimpl = customermanagementserviceimpl;
+	public void setCustomerManagementService(CustomerManagementService customerManagementService) {
+		this.customerManagementService = customerManagementService;
 	}
 
-	public VideoManagementServiceImpl getVideomanagementserviceimpl() {
-		return videomanagementserviceimpl;
+	public VideoManagementService getVideoManagementService() {
+		return videoManagementService;
 	}
 
-	public void setVideomanagementserviceimpl(VideoManagementServiceImpl videomanagementserviceimpl) {
-		this.videomanagementserviceimpl = videomanagementserviceimpl;
+	public void setVideoManagementService(VideoManagementService videoManagementService) {
+		this.videoManagementService = videoManagementService;
 	}
 
-	public RentServiceImpl getRentserviceimpl() {
-		return rentserviceimpl;
+	public RentService getRentService() {
+		return rentService;
 	}
 
-	public void setRentserviceimpl(RentServiceImpl rentserviceimpl) {
-		this.rentserviceimpl = rentserviceimpl;
+	public void setRentservice(RentService rentService) {
+		this.rentService = rentService;
 	}
 
 }

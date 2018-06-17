@@ -7,8 +7,6 @@ import video.rental.demo.application.RentService;
 import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.CustomerRepository;
-import video.rental.demo.domain.model.customer.DateOfBirth;
-import video.rental.demo.domain.model.customer.Name;
 import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoID;

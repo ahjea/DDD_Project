@@ -2,6 +2,7 @@ package video.rental.demo;
 
 import video.rental.demo.application.CustomerManagementService;
 import video.rental.demo.application.RentService;
+import video.rental.demo.application.VideoManagementService;
 import video.rental.demo.application.impl.CustomerManagementServiceImpl;
 import video.rental.demo.application.impl.RentServiceImpl;
 import video.rental.demo.application.impl.VideoManagementServiceImpl;
@@ -23,11 +24,11 @@ public class Main
 	
 		SampleGenerator.generateSamples(customerRepository, videoRepository);
 		
-		CustomerManagementServiceImpl customermanagementserviceimpl = new CustomerManagementServiceImpl(customerRepository);
-		VideoManagementServiceImpl VideoManagementServiceImpl = new VideoManagementServiceImpl(videoRepository);
-		RentServiceImpl rentserviceimpl = new RentServiceImpl(customerRepository, videoRepository);
+		CustomerManagementService customerManagementService = new CustomerManagementServiceImpl(customerRepository);
+		VideoManagementService VideoManagementService = new VideoManagementServiceImpl(videoRepository);
+		RentService rentService = new RentServiceImpl(customerRepository, videoRepository);
 		
-		ui = new CmdUI(customermanagementserviceimpl, VideoManagementServiceImpl, rentserviceimpl);
+		ui = new CmdUI(customerManagementService, VideoManagementService, rentService);
 		
 		ui.start();
 	}

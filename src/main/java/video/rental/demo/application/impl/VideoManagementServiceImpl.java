@@ -4,15 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import video.rental.demo.application.VideoManagementService;
-import video.rental.demo.domain.model.customer.Customer;
-import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.video.PriceCode;
 import video.rental.demo.domain.model.video.Rating;
-import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.Type;
 import video.rental.demo.domain.model.video.Video;
-import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.VideoRepository;
 
 public class VideoManagementServiceImpl implements VideoManagementService {

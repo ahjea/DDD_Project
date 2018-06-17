@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import video.rental.demo.domain.model.video.Rental;
-import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.PriceCode;
 
 @Entity

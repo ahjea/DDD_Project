@@ -8,7 +8,6 @@ import javax.persistence.TypedQuery;
 
 import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoID;
-import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.VideoRepository;
 
 public class VideoRepositoryDBImpl implements VideoRepository{
