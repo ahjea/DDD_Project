@@ -6,6 +6,6 @@ import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.VideoType;
 
 public interface VideoManagementService {
-	String listVideos();
-	void registerVideo(Title videoTitle, VideoType videoType, PriceCode videoPriceCode, Rating videoRating);
+	String listVideos(Title videoTitle);
+	void registerVideo(Title videoTitle, VideoType videoType, PriceCode videoPriceCode, Rating videoRating, int quantity);
 }

@@ -91,7 +91,7 @@ public class CmdUI implements UI {
 	public void listVideos() {
 		System.out.println("List of videos");
 
-		System.out.println(getVideoManagementService().listVideos());
+		System.out.println(getVideoManagementService().listVideos(null));
 		System.out.println("End of list");
 	}
 
@@ -169,7 +169,10 @@ public class CmdUI implements UI {
 			else if (videoRating == 3) rating = Rating.EIGHTEEN;
 			else throw new IllegalArgumentException("No such rating " + videoRating);
 			
-			getVideoManagementService().registerVideo(title, type, priceCode, rating);
+			System.out.println("Enter video quantity:");
+			int videoQuantity = scanner.nextInt();
+			
+			getVideoManagementService().registerVideo(title, type, priceCode, rating, videoQuantity);
 		}
 	}
 

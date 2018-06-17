@@ -30,7 +30,7 @@ public class Main
 		VideoManagementService VideoManagementService = new VideoManagementServiceImpl(videoRepository);
 		RentService rentService = new RentServiceImpl(customerRepository, videoRepository);
 		
-		boolean useGUI = false;
+		boolean useGUI = true;
 		if (useGUI) {
 			ui = new GraphicUI(customerManagementService, VideoManagementService, rentService);
 		} else {

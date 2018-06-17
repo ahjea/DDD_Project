@@ -40,7 +40,9 @@ public class GraphicUI extends JFrame implements UI {
 	private JTextField nameField;
 	private JTextField birthdayField;
 
+	private JTextField idField;
 	private JTextField titleField;
+	private JTextField quantityField;
 
 	private JSpinner priceCodeSpinner;
 	private JSpinner videoTypeSpinner;
@@ -74,7 +76,7 @@ public class GraphicUI extends JFrame implements UI {
 	 * Initialize the contents of the
 	 */
 	private void initialize() {
-		setBounds(100, 100, 680, 422);
+		setBounds(100, 100, 1200, 522);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
@@ -83,7 +85,7 @@ public class GraphicUI extends JFrame implements UI {
 		textArea.setVisible(true);
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scroll.setBounds(18, 249, 640, 133);
+		scroll.setBounds(18, 249, 900, 133);
 		getContentPane().add(scroll);
 
 		JLabel lblWelcomeToSs = new JLabel("Welcome To Premier Video Shop");
@@ -116,38 +118,51 @@ public class GraphicUI extends JFrame implements UI {
 
 		makeButton("Register Video", (e) -> registerVideo(), 18, 95, 117, 29);
 
-		makeLabel("Title:", 147, 100, 61, 16);
+		makeLabel("ID:", 147, 100, 61, 16);
+
+		idField = new JTextField();
+		idField.setBounds(182, 95, 130, 26);
+		getContentPane().add(idField);
+		idField.setColumns(10);
+
+		makeLabel("Title:", 347, 100, 61, 16);
 
 		titleField = new JTextField();
-		titleField.setBounds(182, 95, 100, 26);
+		titleField.setBounds(382, 95, 100, 26);
 		getContentPane().add(titleField);
 		titleField.setColumns(10);
 
-		makeLabel("Price Code:", 294, 100, 75, 16);
+		makeLabel("Price Code:", 494, 100, 75, 16);
 
 		String[] priceCodes = new String[] { "Regular", "New", "Children" };
 		SpinnerListModel priceCodeModel = new SpinnerListModel(priceCodes);
 		priceCodeSpinner = new JSpinner(priceCodeModel);
-		priceCodeSpinner.setBounds(362, 95, 75, 26);
+		priceCodeSpinner.setBounds(562, 95, 75, 26);
 		getContentPane().add(priceCodeSpinner);
 
-		makeLabel("Type:", 445, 100, 61, 16);
+		makeLabel("Type:", 645, 100, 61, 16);
 
 		String[] videoTypes = new String[] { "VHS", "CD", "DVD" };
 		SpinnerListModel videoTypeModel = new SpinnerListModel(videoTypes);
 		videoTypeSpinner = new JSpinner(videoTypeModel);
-		videoTypeSpinner.setBounds(480, 95, 55, 26);
+		videoTypeSpinner.setBounds(680, 95, 55, 26);
 		getContentPane().add(videoTypeSpinner);
 
-		makeLabel("Rating:", 544, 100, 61, 16);
+		makeLabel("Rating:", 744, 100, 61, 16);
 
 		String[] videoRating = new String[] { "Twelve", "Fifteen", "Eighteen" };
 		SpinnerListModel videoRatingModel = new SpinnerListModel(videoRating);
 		ratingSpinner = new JSpinner(videoRatingModel);
-		ratingSpinner.setBounds(590, 95, 70, 26);
+		ratingSpinner.setBounds(790, 95, 70, 26);
 		getContentPane().add(ratingSpinner);
-
-		makeSeparator(28, 136, 572, 1);
+		
+		makeLabel("Quantity:", 900, 100, 61, 16);
+		quantityField = new JTextField();
+		quantityField.setBounds(1000, 95, 90, 26);
+		getContentPane().add(quantityField);
+		quantityField.setColumns(10);
+		
+		makeSeparator(18, 85, 583, 16);
 		makeSeparator(18, 128, 583, 16);
 
 		makeButton("Rent", (e) -> rentVideo(), 18, 148, 117, 29);
@@ -187,8 +202,16 @@ public class GraphicUI extends JFrame implements UI {
 	}
 
 	private void listVideos() {
+		String titleStr =  titleField.getText().toString();
+		Title title;
+		System.out.println(titleStr);
+		if (titleStr.length() == 0) {
+			title = null;
+		} else {
+			title = new Title(titleStr);
+		}
 		textArea.append("List of videos\n");
-		textArea.append(videoManagementService.listVideos());
+		textArea.append(videoManagementService.listVideos(title));
 		textArea.append("End of list\n");
 	}
 
@@ -200,14 +223,14 @@ public class GraphicUI extends JFrame implements UI {
 
 	private void returnVideo() {
 		CustomerID customerID = new CustomerID(userCodeField.getText().toString());
-		VideoID videoID = new VideoID(titleField.getText().toString());
+		VideoID videoID = new VideoID(idField.getText().toString());
 
 		rentService.returnVideo(customerID, videoID);
 	}
 
 	private void rentVideo() {
 		CustomerID customerID = new CustomerID(userCodeField.getText().toString());
-		VideoID videoID = new VideoID(titleField.getText().toString());
+		VideoID videoID = new VideoID(idField.getText().toString());
 
 		rentService.rentVideo(customerID, videoID);
 	}
@@ -249,7 +272,9 @@ public class GraphicUI extends JFrame implements UI {
 		else // Eighteen
 			videoRating = Rating.EIGHTEEN;
 		
-		videoManagementService.registerVideo(title, videoType, priceCode, videoRating);
+		int quantity =  Integer.parseInt(quantityField.getText().toString());
+		
+		videoManagementService.registerVideo(title, videoType, priceCode, videoRating, quantity);
 	}
 
 	private void makeButton(String title, ActionListener listener, int x, int y, int w, int h) {

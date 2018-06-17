@@ -32,16 +32,20 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	 * @see video.rental.demo.application.impl.VideoManagementService#listVideos()
 	 */
 	@Override
-	public String listVideos() {
+	public String listVideos(Title title) {
 		List<Video> videos = getVideoRepository().findAllVideos();
 		
 		String result = "";	
 		for (Video video : videos) {
+			if (title != null && !video.getTitle().sameValueAs(title)) {
+				continue;
+			}
 			result += "Video ID: "+ video.getVideoID() +
 					"\tVideo type: " + video.getVideoType() + 
 					"\tPrice code: " + video.getPriceCode() + 
 					"\tRating: " + video.getVideoRating() +
 					"\tTitle: " + video.getTitle() +
+					"\tRented: " + video.isRented() +
 					"\n"; 
 		}
 		
@@ -52,15 +56,14 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	 * @see video.rental.demo.application.impl.VideoManagementService#registerVideo(java.lang.String, int, int, int)
 	 */
 	@Override
-	public void registerVideo(Title videoTitle, VideoType videoType, PriceCode videoPriceCode, Rating videoRating) {
+	public void registerVideo(Title videoTitle, VideoType videoType, PriceCode videoPriceCode, Rating videoRating, int quantity) {
 		Date registeredDate = new Date();
 		
-		int videoid = videoRepository.findAllVideos().size()+1;
-		
-		Video video = new Video(new VideoID(videoid), videoTitle, videoType, videoPriceCode, videoRating, registeredDate);
-	
-		getVideoRepository().saveVideo(video);
+		for (int i = 0; i < quantity; i++) {
+			int videoid = videoRepository.findAllVideos().size()+1;
+			Video video = new Video(new VideoID(videoid), videoTitle, videoType, videoPriceCode, videoRating, registeredDate);
+			getVideoRepository().saveVideo(video);
+		}
 	}
-	
 }
 
