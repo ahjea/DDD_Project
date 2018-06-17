@@ -21,7 +21,7 @@ public class VideoRepositoryDBImpl implements VideoRepository{
 	}
 
 	/* (non-Javadoc)
-	 * @see video.rental.demo.Repository#findVideoByID(java.lang.String)
+	 * @see video.rental.demo.Repository#findVideoByID(video.rental.demo.VideoID)
 	 */
 	@Override
 	public Video findVideoByID(VideoID id) {

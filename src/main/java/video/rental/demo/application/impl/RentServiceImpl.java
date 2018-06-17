@@ -10,6 +10,7 @@ import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.customer.Rental;
+import video.rental.demo.domain.model.customer.RentalStatus;
 import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.VideoRepository;
@@ -78,8 +79,12 @@ public class RentServiceImpl implements RentService {
 		List<Rental> customerRentals = foundCustomer.getRentals();
 	
 		for (Rental rental : customerRentals) {
-			if (rental.getVideo().getID().sameValueAs(videoID) && rental.getVideo().isRented()) {
-				Video video = rental.returnVideo();
+			if (rental.getVideoID().sameValueAs(videoID)) {
+				Video video = videorepository.findVideoByID(videoID);
+				if (video.isRented() == false) {
+					continue;
+				}
+				
 				video.setRented(false);
 				getVideorepository().saveVideo(video);
 				break;
@@ -99,8 +104,13 @@ public class RentServiceImpl implements RentService {
 			result += "Id: " + foundCustomer.getCustomerID() + "\nName: " + foundCustomer.getName() + "\tRentals: "
 					+ foundCustomer.getRentals().size() + "\n";
 			for (Rental rental : foundCustomer.getRentals()) {
-				result += "\tTitle: " + rental.getVideo().getTitle() + " ";
-				result += "\tPrice Code: " + rental.getVideo().getPriceCode();
+				Video video = videorepository.findVideoByID(rental.getVideoID());
+				result += "\tTitle: " + video.getTitle() + " ";
+				result += "\tPrice Code: " + video.getPriceCode();
+				
+				if (rental.getStatus() == RentalStatus.RENTED) {
+					returnVideo(customerID, rental.getVideoID());
+				}
 			}
 	
 			List<Rental> rentals = new ArrayList<Rental>();

@@ -93,7 +93,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	public boolean rentFor(Customer customer) {
 		if (!isUnderAge(customer)) {		
 			setRented(true);
-			Rental rental = new Rental(this);
+			Rental rental = new Rental(videoID);
 			List<Rental> customerRentals = customer.getRentals();
 			customerRentals.add(rental);
 			customer.setRentals(customerRentals);

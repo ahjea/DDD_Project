@@ -32,8 +32,8 @@ public class SampleGenerator {
 		videoRepository.saveVideo(v1);
 		videoRepository.saveVideo(v2);
 	
-		Rental r1 = new Rental(v1);
-		Rental r2 = new Rental(v2);
+		Rental r1 = new Rental(v1.getID());
+		Rental r2 = new Rental(v2.getID());
 	
 		List<Rental> rentals = james.getRentals();
 		rentals.add(r1);

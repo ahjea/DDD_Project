@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import video.rental.demo.domain.model.video.PriceCode;
+import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.VideoRepository;
 
 @Entity
 public class Customer implements video.rental.demo.domain.shared.Entity<Customer> {
@@ -54,7 +56,7 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 		this.rentals = rentals;
 	}
 
-	public String getReport() {
+	public String getReport(VideoRepository videoRepository) {
 		String result = "Customer Report for " + getName() + "\n";
 
 		List<Rental> rentals = getRentals();
@@ -68,8 +70,10 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 			int daysRented = 0;
 
 			daysRented = each.getDaysRented();
+			
+			Video video = videoRepository.findVideoByID(each.getVideoID());
 
-			switch (each.getVideo().getPriceCode()) {
+			switch (video.getPriceCode()) {
 			case REGULAR:
 				eachCharge += 2;
 				if (daysRented > 2)
@@ -86,13 +90,13 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 			}
 			
 			eachPoint++;
-			if ((each.getVideo().getPriceCode() == PriceCode.NEW_RELEASE))
+			if ((video.getPriceCode() == PriceCode.NEW_RELEASE))
 				eachPoint++;
 
-			if (daysRented > each.getDaysRentedLimit())
-				eachPoint -= Math.min(eachPoint, each.getVideo().getLateReturnPointPenalty());
+			if (daysRented > each.getDaysRentedLimit(video.getVideoType()))
+				eachPoint -= Math.min(eachPoint, video.getLateReturnPointPenalty());
 
-			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
+			result += "\t" + video.getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;

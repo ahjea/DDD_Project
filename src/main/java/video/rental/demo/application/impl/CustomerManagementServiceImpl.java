@@ -9,13 +9,17 @@ import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.customer.DateOfBirth;
 import video.rental.demo.domain.model.customer.Name;
 import video.rental.demo.domain.model.customer.Rental;
+import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.VideoRepository;
 
 public class CustomerManagementServiceImpl implements CustomerManagementService {
 
 	private CustomerRepository customerrepository;
+	private VideoRepository videoRepository;
 	
-	public CustomerManagementServiceImpl(CustomerRepository customerrepository) {
+	public CustomerManagementServiceImpl(CustomerRepository customerrepository, VideoRepository videoRepository) {
 		this.setCustomerrepository(customerrepository);
+		this.videoRepository = videoRepository;
 	}
 	
 	/* (non-Javadoc)
@@ -30,8 +34,10 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 			result += "ID: " + customer.getCustomerIDNumber() + "\nName: " + customer.getName() + "\tRentals: "
 					+ customer.getRentals().size() + "\n";
 			for (Rental rental : customer.getRentals()) {
-				result += "\tTitle: " + rental.getVideo().getTitle() + " ";
-				result += "\tPrice Code: " + rental.getVideo().getPriceCode();
+				Video video = videoRepository.findVideoByID(rental.getVideoID());
+				result += "\tID: " + video.getID() + " ";
+				result += "\tTitle: " + video.getTitle() + " ";
+				result += "\tPrice Code: " + video.getPriceCode();
 				result += "\tReturn Status: " + rental.getStatus() + "\n";
 			}
 		}
@@ -46,7 +52,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 	public String getCustomerReport(CustomerID customerid) {
 		Customer foundCustomer = getCustomerrepository().findCustomerById(customerid);
 		if (foundCustomer != null) {
-			return foundCustomer.getReport();
+			return foundCustomer.getReport(videoRepository);
 		}
 		else {
 			return null;

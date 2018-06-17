@@ -26,7 +26,7 @@ public class Main
 	
 		SampleGenerator.generateSamples(customerRepository, videoRepository);
 		
-		CustomerManagementService customerManagementService = new CustomerManagementServiceImpl(customerRepository);
+		CustomerManagementService customerManagementService = new CustomerManagementServiceImpl(customerRepository, videoRepository);
 		VideoManagementService VideoManagementService = new VideoManagementServiceImpl(videoRepository);
 		RentService rentService = new RentServiceImpl(customerRepository, videoRepository);
 		

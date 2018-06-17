@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import video.rental.demo.domain.model.video.Video;
-import video.rental.demo.domain.shared.ValueObject;
+import video.rental.demo.domain.model.video.VideoID;
+import video.rental.demo.domain.model.video.VideoType;
 
 @Entity
 public class Rental implements video.rental.demo.domain.shared.Entity<Rental> {
@@ -22,36 +22,31 @@ public class Rental implements video.rental.demo.domain.shared.Entity<Rental> {
 	private Date rentDate;
 	private Date returnDate;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	private Video video;
+	private VideoID videoID;
 
 	Rental() {
 	}
 
-	public Rental(Video video) {
-		this.video = video;
+	public Rental(VideoID videoID) {
+		this.videoID = videoID;
 		status = RentalStatus.RENTED;
 		rentDate = new Date();
 	}
 
-	public Video getVideo() {
-		return video;
-	}
-
-	public void setVideo(Video video) {
-		this.video = video;
+	public VideoID getVideoID() {
+		return videoID;
 	}
 
 	public RentalStatus getStatus() {
 		return status;
 	}
 
-	public Video returnVideo() {
+	public VideoID returnVideo() {
 		if (status == RentalStatus.RENTED) {
 			this.status = RentalStatus.RETURNED;
 			returnDate = new Date();
 		}
-		return video;
+		return videoID;
 	}
 
 	public Date getRentDate() {
@@ -70,9 +65,9 @@ public class Rental implements video.rental.demo.domain.shared.Entity<Rental> {
 		this.returnDate = returnDate;
 	}
 
-	public int getDaysRentedLimit() {
+	public int getDaysRentedLimit(VideoType type) {
 		int limit = 0;
-		switch (video.getVideoType()) {
+		switch (type) {
 		case VHS:
 			limit = 5;
 			break;
