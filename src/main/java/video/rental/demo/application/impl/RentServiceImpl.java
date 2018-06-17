@@ -68,7 +68,7 @@ public class RentServiceImpl implements RentService {
 		List<Rental> customerRentals = foundCustomer.getRentals();
 	
 		for (Rental rental : customerRentals) {
-			if (rental.getVideo().getID().equals(videoID) && rental.getVideo().isRented()) {
+			if (rental.getVideo().getID().sameValueAs(videoID) && rental.getVideo().isRented()) {
 				Video video = rental.returnVideo();
 				video.setRented(false);
 				getVideorepository().saveVideo(video);

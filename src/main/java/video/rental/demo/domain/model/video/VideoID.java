@@ -2,7 +2,7 @@ package video.rental.demo.domain.model.video;
 
 import video.rental.demo.domain.shared.ValueObject;
 
-public class VideoID implements ValueObject<VideoID>{
+public final class VideoID implements ValueObject<VideoID>{
 	private String id;
 	
 	public VideoID(final String id) {
@@ -21,6 +21,8 @@ public class VideoID implements ValueObject<VideoID>{
 	@Override
 	public boolean sameValueAs(final VideoID other) {
 		// TODO Auto-generated method stub
-		return this.equals(other);
+		return other != null && this.id.equals(other.id);
 	}
+	
+	public VideoID() {}	// for hibernate
 }

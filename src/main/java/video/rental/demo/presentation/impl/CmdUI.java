@@ -120,7 +120,7 @@ public class CmdUI implements UI {
 		CustomerID customerID = new CustomerID(scanner.next());
 
 		System.out.println("Enter video id to rent: ");
-		VideoID VideoID = new VideoID(scanner.nextInt());
+		VideoID VideoID = new VideoID(scanner.next());
 		
 		getRentService().rentVideo(customerID, VideoID);
 	}

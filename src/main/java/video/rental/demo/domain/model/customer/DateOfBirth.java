@@ -2,7 +2,7 @@ package video.rental.demo.domain.model.customer;
 
 import video.rental.demo.domain.shared.ValueObject;
 
-public class DateOfBirth implements ValueObject<DateOfBirth>{
+public final class DateOfBirth implements ValueObject<DateOfBirth>{
 	private String dateOfBirth;
 	
 	public DateOfBirth(final String dateOfBirth) {
@@ -17,6 +17,8 @@ public class DateOfBirth implements ValueObject<DateOfBirth>{
 	@Override
 	public boolean sameValueAs(final DateOfBirth other) {
 		// TODO Auto-generated method stub
-		return this.equals(other);
+		return other != null && this.dateOfBirth.equals(other.dateOfBirth);
 	}
+	
+	public DateOfBirth() {}	// for hibernate
 }

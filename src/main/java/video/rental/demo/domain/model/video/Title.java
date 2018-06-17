@@ -2,7 +2,7 @@ package video.rental.demo.domain.model.video;
 
 import video.rental.demo.domain.shared.ValueObject;
 
-public class Title implements ValueObject<Title>{
+public final class Title implements ValueObject<Title>{
 	private String title;
 	
 	public Title(final String title) {
@@ -17,6 +17,8 @@ public class Title implements ValueObject<Title>{
 	@Override
 	public boolean sameValueAs(final Title other) {
 		// TODO Auto-generated method stub
-		return this.equals(other);
+		return other != null && this.title.equals(other.title);
 	}
+	
+	public Title() {}	// for hibernate
 }

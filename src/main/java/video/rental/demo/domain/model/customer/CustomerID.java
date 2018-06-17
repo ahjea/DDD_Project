@@ -2,21 +2,23 @@ package video.rental.demo.domain.model.customer;
 
 import video.rental.demo.domain.shared.ValueObject;
 
-public class CustomerID implements ValueObject<CustomerID>{
-	private String code;
+public final class CustomerID implements ValueObject<CustomerID>{
+	private String id;
 	
 	public CustomerID(final String code) {
-		this.code = code;
+		this.id = code;
 	}
 
 	@Override
 	public String toString() {
-		return code;
+		return id;
 	}
 	
 	@Override
 	public boolean sameValueAs(final CustomerID other) {
 		// TODO Auto-generated method stub
-		return this.equals(other);
+		return other != null && this.id.equals(other.id);
 	}
+	
+	public CustomerID() {}	// for hibernate
 }

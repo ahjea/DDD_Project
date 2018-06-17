@@ -9,5 +9,5 @@ public enum VideoType implements ValueObject<VideoType>{
 	public boolean sameValueAs(final VideoType other) {
 		// TODO Auto-generated method stub
 		return this.equals(other);
-	}
+	}	
 }
