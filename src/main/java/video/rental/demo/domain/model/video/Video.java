@@ -15,13 +15,14 @@ import javax.persistence.UniqueConstraint;
 import video.rental.demo.domain.model.customer.Customer;
 
 @Entity
-@Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" }) })
+@Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "videoID" }) })
 public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	@Id
+	private VideoID videoID;
+
 	private Title title;
 	private Rating videoRating;
 	private PriceCode priceCode;
-	private VideoID videoID;
 
 	private Type videoType;
 
