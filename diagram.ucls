@@ -95,8 +95,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="video.rental.demo.presentation.CmdUI" project="VideoRental_Initial" 
-    file="/VideoRental_Initial/src/main/java/video/rental/demo/presentation/CmdUI.java" binary="false" 
+  <class id="10" language="java" name="video.rental.demo.presentation.impl.CmdUI" project="VideoRental_Initial" 
+    file="/VideoRental_Initial/src/main/java/video/rental/demo/presentation/impl/CmdUI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-78" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -162,23 +162,11 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="25">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="26" name="videos">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="27" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="28">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="29" name="interactor">        
+      <attribute id="26" name="interactor">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="30" minimum="0" maximum="1">        
+      <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    

@@ -6,11 +6,12 @@ import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.VideoRepository;
 import video.rental.demo.infrastructure.CustomerRepositoryDBImpl;
 import video.rental.demo.infrastructure.VideoRepositoryDBImpl;
-import video.rental.demo.presentation.CmdUI;
+import video.rental.demo.presentation.UI;
+import video.rental.demo.presentation.impl.CmdUI;
 
 public class Main
 {
-	private static CmdUI ui;
+	private static UI ui;
 	
 	public static void main(String[] args)
 	{
@@ -21,7 +22,12 @@ public class Main
 		
 		Interactor interactor = new Interactor(customerRepository, videoRepository);
 		
-		ui = new CmdUI(interactor);
+		boolean useGUI = false;
+		if (useGUI) {
+			ui = null;
+		} else {
+			ui = new CmdUI(interactor);
+		}
 		
 		ui.start();
 	}

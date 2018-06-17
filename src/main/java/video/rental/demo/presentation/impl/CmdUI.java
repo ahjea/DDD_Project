@@ -1,7 +1,8 @@
-package video.rental.demo.presentation;
+package video.rental.demo.presentation.impl;
 
 import java.util.Scanner;
 
+import video.rental.demo.presentation.UI;
 import video.rental.demo.application.impl.Interactor;
 
 /*
@@ -9,7 +10,7 @@ import video.rental.demo.application.impl.Interactor;
  * constructor瑜� �넻�븳 �뵒�렂�뜕�떆 �씤�젥
  * 鍮꾩쫰�땲�뒪 濡쒖쭅 遺�
  * */
-public class CmdUI {
+public class CmdUI implements UI {
 	Interactor interactor;
 	
 	public CmdUI(Interactor interactor) {
