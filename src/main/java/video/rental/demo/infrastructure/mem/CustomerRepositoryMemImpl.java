@@ -1,4 +1,4 @@
-package video.rental.demo.infrastructure;
+package video.rental.demo.infrastructure.mem;
 
 import java.util.HashMap;
 import java.util.List;

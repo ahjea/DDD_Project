@@ -1,4 +1,4 @@
-package video.rental.demo.infrastructure;
+package video.rental.demo.infrastructure.db;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.customer.CustomerRepository;
+import video.rental.demo.infrastructure.persistence.PersistenceManager;
 
 public class CustomerRepositoryDBImpl implements CustomerRepository{
 
