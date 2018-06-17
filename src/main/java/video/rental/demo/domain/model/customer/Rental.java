@@ -1,4 +1,4 @@
-package video.rental.demo.domain.model.video;
+package video.rental.demo.domain.model.customer;
 
 import java.util.Date;
 
@@ -8,16 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.shared.ValueObject;
 
 @Entity
-public class Rental implements ValueObject<Rental> {
+public class Rental implements video.rental.demo.domain.shared.Entity<Rental> {
 
 	@Id
 	@GeneratedValue
 	private int id;
 
-	private int status; // 0 for Rented, 1 for Returned
+	private RentalStatus status; // 0 for Rented, 1 for Returned
 	private Date rentDate;
 	private Date returnDate;
 
@@ -29,7 +30,7 @@ public class Rental implements ValueObject<Rental> {
 
 	public Rental(Video video) {
 		this.video = video;
-		status = 0;
+		status = RentalStatus.RENTED;
 		rentDate = new Date();
 	}
 
@@ -41,13 +42,13 @@ public class Rental implements ValueObject<Rental> {
 		this.video = video;
 	}
 
-	public int getStatus() {
+	public RentalStatus getStatus() {
 		return status;
 	}
 
 	public Video returnVideo() {
-		if (status == 0) {
-			this.status = 1;
+		if (status == RentalStatus.RENTED) {
+			this.status = RentalStatus.RETURNED;
 			returnDate = new Date();
 		}
 		return video;
@@ -87,7 +88,7 @@ public class Rental implements ValueObject<Rental> {
 
 	public int getDaysRented() {
 		long diff = 0;
-		if (getStatus() == 1) { // returned Video
+		if (getStatus() == RentalStatus.RETURNED) { // returned Video
 			diff = getReturnDate().getTime() - getRentDate().getTime();
 		} else { // not yet returned
 			diff = new Date().getTime() - getRentDate().getTime();
@@ -96,8 +97,9 @@ public class Rental implements ValueObject<Rental> {
 	}
 
 	@Override
-	public boolean sameValueAs(Rental other) {
+	public boolean sameIdentityAs(Rental other) {
 		// TODO Auto-generated method stub
-		return other != null && this.equals(other);
+		if(other.id == id) return true;
+		else return false;
 	}
 }

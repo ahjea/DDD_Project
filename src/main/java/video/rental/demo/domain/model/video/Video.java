@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import video.rental.demo.domain.model.customer.Customer;
+import video.rental.demo.domain.model.customer.Rental;
 
 @Entity
 @Table(name = "VIDEO", uniqueConstraints = { @UniqueConstraint(columnNames = { "videoID" }) })
