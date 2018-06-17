@@ -6,6 +6,9 @@ import video.rental.demo.presentation.UI;
 import video.rental.demo.application.RentService;
 import video.rental.demo.application.CustomerManagementService;
 import video.rental.demo.application.VideoManagementService;
+import video.rental.demo.domain.model.customer.CustomerID;
+import video.rental.demo.domain.model.customer.DateOfBirth;
+import video.rental.demo.domain.model.customer.Name;
 
 public class CmdUI implements UI {
 	
@@ -96,9 +99,9 @@ public class CmdUI implements UI {
 
 	public void getCustomerReport() {
 		System.out.println("Enter customer code: ");
-		String code = scanner.next();
+		CustomerID id = new CustomerID(scanner.next());
 
-		String result = getCustomerManagementService().getCustomerReport(code);
+		String result = getCustomerManagementService().getCustomerReport(id);
 		
 		if (result == null) {
 			System.out.println("No customer found");
@@ -121,15 +124,15 @@ public class CmdUI implements UI {
 		
 		if (object.equals("customer")) {
 			System.out.println("Enter customer name: ");
-			String name = scanner.next();
+			Name name = new Name(scanner.next());
 
-			System.out.println("Enter customer code: ");
-			String code = scanner.next();
+			System.out.println("Enter customer id: ");
+			CustomerID id = new CustomerID(scanner.next());
 
 			System.out.println("Enter customer birthday: ");
-			String dateOfBirth = scanner.next();
+			DateOfBirth dateOfBirth = new DateOfBirth(scanner.next());
 
-			getCustomerManagementService().registerCustomer(name, code, dateOfBirth);
+			getCustomerManagementService().registerCustomer(name, id, dateOfBirth);
 		} else {
 			System.out.println("Enter video title to register: ");
 			String title = scanner.next();

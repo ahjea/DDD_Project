@@ -43,8 +43,8 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 	 * @see video.rental.demo.application.impl.CustomerManagementService#getCustomerReport(java.lang.String)
 	 */
 	@Override
-	public String getCustomerReport(String customerid) {
-		Customer foundCustomer = getCustomerrepository().findCustomerById(new CustomerID(customerid));
+	public String getCustomerReport(CustomerID customerid) {
+		Customer foundCustomer = getCustomerrepository().findCustomerById(customerid);
 		if (foundCustomer != null) {
 			return foundCustomer.getReport();
 		}
@@ -57,8 +57,8 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 	 * @see video.rental.demo.application.impl.CustomerManagementService#registerCustomer(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void registerCustomer(String name, String code, String dateOfBirth) {
-		Customer customer = new Customer(new CustomerID(code), new Name(name), new DateOfBirth(dateOfBirth));
+	public void registerCustomer(Name name, CustomerID id, DateOfBirth dateOfBirth) {
+		Customer customer = new Customer(id, name, dateOfBirth);
 		getCustomerrepository().saveCustomer(customer);
 	}
 
