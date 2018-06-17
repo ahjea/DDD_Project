@@ -73,14 +73,14 @@ public class CmdUI implements UI {
 
 	public void clearRentals() {
 		System.out.println("Enter customer code: ");
-		CustomerID customerID = new CustomerID(scanner.next());
+		CustomerID customerID = new CustomerID(scanner.nextInt());
 
 		System.out.println(getRentService().clearRentals(customerID));
 	}
 
 	public void returnVideo() {
 		System.out.println("Enter customer code: ");
-		CustomerID customerID = new CustomerID(scanner.next());
+		CustomerID customerID = new CustomerID(scanner.nextInt());
 		
 		System.out.println("Enter video ID to return: ");
 		VideoID videoID = new VideoID(scanner.next());
@@ -104,7 +104,7 @@ public class CmdUI implements UI {
 
 	public void getCustomerReport() {
 		System.out.println("Enter customer code: ");
-		CustomerID id = new CustomerID(scanner.next());
+		CustomerID id = new CustomerID(scanner.nextInt());
 
 		String result = getCustomerManagementService().getCustomerReport(id);
 		
@@ -117,7 +117,7 @@ public class CmdUI implements UI {
 
 	public void rentVideo() {
 		System.out.println("Enter customer code: ");
-		CustomerID customerID = new CustomerID(scanner.next());
+		CustomerID customerID = new CustomerID(scanner.nextInt());
 
 		System.out.println("Enter video id to rent: ");
 		VideoID VideoID = new VideoID(scanner.next());
@@ -132,12 +132,12 @@ public class CmdUI implements UI {
 			Name name = new Name(scanner.next());
 
 			System.out.println("Enter customer id: ");
-			CustomerID id = new CustomerID(scanner.next());
+			CustomerID id = new CustomerID(scanner.nextInt());
 
 			System.out.println("Enter customer birthday: ");
 			DateOfBirth dateOfBirth = new DateOfBirth(scanner.next());
 
-			getCustomerManagementService().registerCustomer(name, id, dateOfBirth);
+			getCustomerManagementService().registerCustomer(name, dateOfBirth);
 		} else {
 			System.out.println("Enter video title to register: ");
 			Title title = new Title(scanner.next());

@@ -7,5 +7,5 @@ import video.rental.demo.domain.model.customer.Name;
 public interface CustomerManagementService {
 	String listCustomers();
 	String getCustomerReport(CustomerID customerId);
-	void registerCustomer(Name name, CustomerID id, DateOfBirth dateOfBirth);
+	void registerCustomer(Name name, DateOfBirth dateOfBirth);
 }

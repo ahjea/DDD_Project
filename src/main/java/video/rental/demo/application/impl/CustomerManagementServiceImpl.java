@@ -27,7 +27,7 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 	
 		String result = "";
 		for (Customer customer : customers) {
-			result += "ID: " + customer.getCustomerID() + "\nName: " + customer.getName() + "\tRentals: "
+			result += "ID: " + customer.getCustomerIDNumber() + "\nName: " + customer.getName() + "\tRentals: "
 					+ customer.getRentals().size() + "\n";
 			for (Rental rental : customer.getRentals()) {
 				result += "\tTitle: " + rental.getVideo().getTitle() + " ";
@@ -57,8 +57,9 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 	 * @see video.rental.demo.application.impl.CustomerManagementService#registerCustomer(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void registerCustomer(Name name, CustomerID id, DateOfBirth dateOfBirth) {
-		Customer customer = new Customer(id, name, dateOfBirth);
+	public void registerCustomer(Name name, DateOfBirth dateOfBirth) {
+		int customerIDnumber = getCustomerrepository().findAllCustomers().size()+1;
+		Customer customer = new Customer(new CustomerID(customerIDnumber), name, dateOfBirth);
 		getCustomerrepository().saveCustomer(customer);
 	}
 

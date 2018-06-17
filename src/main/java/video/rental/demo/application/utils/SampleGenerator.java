@@ -20,8 +20,8 @@ import video.rental.demo.domain.model.video.VideoRepository;
 public class SampleGenerator {
 
 	public static void generateSamples(CustomerRepository customerRepository, VideoRepository videoRepository) {
-		Customer james = new Customer(new CustomerID("0"), new Name("James"), new DateOfBirth("1975-5-15"));
-		Customer brown = new Customer(new CustomerID("1"), new Name("Brown"), new DateOfBirth("2001-3-17"));
+		Customer james = new Customer(new CustomerID(1), new Name("James"), new DateOfBirth("1975-5-15"));
+		Customer brown = new Customer(new CustomerID(2), new Name("Brown"), new DateOfBirth("2001-3-17"));
 		customerRepository.saveCustomer(james);
 		customerRepository.saveCustomer(brown);
 	

@@ -30,6 +30,10 @@ public class Customer implements video.rental.demo.domain.shared.Entity<Customer
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public int getCustomerIDNumber() {
+		return getCustomerID().getCustomerIDnumber();
+	}
+	
 	public CustomerID getCustomerID() {
 		return cutomerid;
 	}

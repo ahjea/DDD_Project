@@ -186,7 +186,7 @@ public class GraphicUI extends JFrame implements UI {
 
 	private void clearRentals()
 	{
-		CustomerID id = new CustomerID(userCodeField.getText().toString());
+		CustomerID id = new CustomerID(Integer.parseInt(userCodeField.getText().toString()));
 
 		String result = rentService.clearRentals(id);
 		
@@ -194,7 +194,7 @@ public class GraphicUI extends JFrame implements UI {
 	}
 
 	private void getCustomerReport() {
-		CustomerID id = new CustomerID(userCodeField.getText().toString());
+		CustomerID id = new CustomerID(Integer.parseInt(userCodeField.getText()));
 
 		String result = customerManagementService.getCustomerReport(id);
 
@@ -222,25 +222,24 @@ public class GraphicUI extends JFrame implements UI {
 	}
 
 	private void returnVideo() {
-		CustomerID customerID = new CustomerID(userCodeField.getText().toString());
+		CustomerID customerID = new CustomerID(Integer.parseInt(userCodeField.getText().toString()));
 		VideoID videoID = new VideoID(idField.getText().toString());
 
 		rentService.returnVideo(customerID, videoID);
 	}
 
 	private void rentVideo() {
-		CustomerID customerID = new CustomerID(userCodeField.getText().toString());
+		CustomerID customerID = new CustomerID(Integer.parseInt(userCodeField.getText().toString()));
 		VideoID videoID = new VideoID(idField.getText().toString());
 
 		rentService.rentVideo(customerID, videoID);
 	}
 
 	private void registerUser() {
-		CustomerID id = new CustomerID(userCodeField.getText().toString());
 		Name name = new Name(nameField.getText().toString());
 		DateOfBirth birthday = new DateOfBirth(birthdayField.getText().toString());
 
-		customerManagementService.registerCustomer(name, id, birthday);
+		customerManagementService.registerCustomer(name, birthday);
 	}
 
 	private void registerVideo() {
