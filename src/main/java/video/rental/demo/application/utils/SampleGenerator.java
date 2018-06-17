@@ -9,7 +9,7 @@ import video.rental.demo.domain.model.customer.Name;
 import video.rental.demo.domain.model.customer.DateOfBirth;
 import video.rental.demo.domain.model.customer.CustomerRepository;
 import video.rental.demo.domain.model.video.Rating;
-import video.rental.demo.domain.model.video.Type;
+import video.rental.demo.domain.model.video.VideoType;
 import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.Rental;
 import video.rental.demo.domain.model.video.PriceCode;
@@ -25,9 +25,9 @@ public class SampleGenerator {
 		customerRepository.saveCustomer(james);
 		customerRepository.saveCustomer(brown);
 	
-		Video v1 = new Video(new VideoID(1), new Title("V1"), Type.CD, PriceCode.REGULAR, Rating.FIFTEEN, new Date());
+		Video v1 = new Video(new VideoID(1), new Title("V1"), VideoType.CD, PriceCode.REGULAR, Rating.FIFTEEN, new Date());
 		v1.setRented(true);
-		Video v2 = new Video(new VideoID(2), new Title("V2"), Type.DVD, PriceCode.NEW_RELEASE, Rating.TWELVE, new Date());
+		Video v2 = new Video(new VideoID(2), new Title("V2"), VideoType.DVD, PriceCode.NEW_RELEASE, Rating.TWELVE, new Date());
 		v2.setRented(true);
 		videoRepository.saveVideo(v1);
 		videoRepository.saveVideo(v2);

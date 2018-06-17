@@ -12,7 +12,7 @@ import video.rental.demo.domain.model.customer.Name;
 import video.rental.demo.domain.model.video.PriceCode;
 import video.rental.demo.domain.model.video.Rating;
 import video.rental.demo.domain.model.video.Title;
-import video.rental.demo.domain.model.video.Type;
+import video.rental.demo.domain.model.video.VideoType;
 import video.rental.demo.domain.model.video.VideoID;
 
 public class CmdUI implements UI {
@@ -145,10 +145,10 @@ public class CmdUI implements UI {
 			System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
 			int videoType = scanner.nextInt();
 			
-			Type type;
-			if (videoType == 1) type = Type.VHS;
-			else if (videoType == 2) type = Type.CD;
-			else if (videoType == 3) type = Type.DVD;
+			VideoType type;
+			if (videoType == 1) type = VideoType.VHS;
+			else if (videoType == 2) type = VideoType.CD;
+			else if (videoType == 3) type = VideoType.DVD;
 			else throw new IllegalArgumentException("No such type " + videoType);
 
 			System.out.println("Enter price code( 1 for Regular, 2 for New Release 3 for Children ):");

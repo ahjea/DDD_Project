@@ -24,14 +24,14 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	private Rating videoRating;
 	private PriceCode priceCode;
 
-	private Type videoType;
+	private VideoType videoType;
 
 	private Date registeredDate;
 	private boolean rented;
 	
 	public Video() {}	// for hibernate
 
-	public Video(VideoID videoID, Title title, Type videoType, PriceCode priceCode, Rating videoRating, Date registeredDate) {
+	public Video(VideoID videoID, Title title, VideoType videoType, PriceCode priceCode, Rating videoRating, Date registeredDate) {
 		this.videoID = videoID;
 		this.title = title; 
 		this.videoType = videoType;
@@ -85,7 +85,7 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		return registeredDate;
 	}
 
-	public Type getVideoType() {
+	public VideoType getVideoType() {
 		return videoType;
 	}
 

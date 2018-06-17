@@ -7,7 +7,7 @@ import video.rental.demo.application.VideoManagementService;
 import video.rental.demo.domain.model.video.PriceCode;
 import video.rental.demo.domain.model.video.Rating;
 import video.rental.demo.domain.model.video.Title;
-import video.rental.demo.domain.model.video.Type;
+import video.rental.demo.domain.model.video.VideoType;
 import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.VideoRepository;
@@ -52,7 +52,7 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	 * @see video.rental.demo.application.impl.VideoManagementService#registerVideo(java.lang.String, int, int, int)
 	 */
 	@Override
-	public void registerVideo(Title videoTitle, Type videoType, PriceCode videoPriceCode, Rating videoRating) {
+	public void registerVideo(Title videoTitle, VideoType videoType, PriceCode videoPriceCode, Rating videoRating) {
 		Date registeredDate = new Date();
 		
 		int videoid = videoRepository.findAllVideos().size()+1;
