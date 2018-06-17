@@ -47,6 +47,11 @@ public class RentServiceImpl implements RentService {
 		if (foundCustomer == null)
 			return;
 		
+		CustomerID locked = rentLog.putIfAbsent(videoID, customerID);
+		if (locked != null) {
+			return;
+		}
+
 		Video foundVideo = getVideorepository().findVideoByID(videoID);
 	
 		if (foundVideo == null)
@@ -59,12 +64,7 @@ public class RentServiceImpl implements RentService {
 		if (status == false) {
 			return;
 		}
-		
-		CustomerID locked = rentLog.putIfAbsent(videoID, customerID);
-		if (locked != null) {
-			return;
-		}
-		
+	
 		getVideorepository().saveVideo(foundVideo);
 		getCustomerRepository().saveCustomer(foundCustomer);
 	
