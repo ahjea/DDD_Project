@@ -23,18 +23,10 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 		this.setVideoRepository(videorepository);
 	}
 
-	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.VideoManagementService#getVideoRepository()
-	 */
-	@Override
 	public VideoRepository getVideoRepository() {
 		return videoRepository;
 	}
 
-	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.VideoManagementService#setVideoRepository(video.rental.demo.domain.model.video.VideoRepository)
-	 */
-	@Override
 	public void setVideoRepository(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
 	}

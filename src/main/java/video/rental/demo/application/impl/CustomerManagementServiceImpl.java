@@ -59,18 +59,10 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 		getCustomerrepository().saveCustomer(customer);
 	}
 
-	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.CustomerManagementService#getCustomerrepository()
-	 */
-	@Override
 	public CustomerRepository getCustomerrepository() {
 		return customerrepository;
 	}
 
-	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.CustomerManagementService#setCustomerrepository(video.rental.demo.domain.model.customer.CustomerRepository)
-	 */
-	@Override
 	public void setCustomerrepository(CustomerRepository customerrepository) {
 		this.customerrepository = customerrepository;
 	}

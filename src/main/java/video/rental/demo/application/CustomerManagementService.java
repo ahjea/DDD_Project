@@ -9,9 +9,4 @@ public interface CustomerManagementService {
 	String getCustomerReport(String customerid);
 
 	void registerCustomer(String name, String code, String dateOfBirth);
-
-	CustomerRepository getCustomerrepository();
-
-	void setCustomerrepository(CustomerRepository customerrepository);
-
 }
