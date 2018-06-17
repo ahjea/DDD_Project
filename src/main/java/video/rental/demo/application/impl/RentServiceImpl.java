@@ -79,17 +79,18 @@ public class RentServiceImpl implements RentService {
 		getCustomerRepository().saveCustomer(foundCustomer);
 	}
 	
-	public void clearRentals(String customerCode) {
+	public String clearRentals(String customerCode) {
 		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerCode));
 	
+		String result = "";
 		if (foundCustomer == null) {
-			System.out.println("No customer found");
+			result += "No customer found\n";
 		} else {
-			System.out.println("Id: " + foundCustomer.getCustomerID() + "\nName: " + foundCustomer.getName() + "\tRentals: "
-					+ foundCustomer.getRentals().size());
+			result += "Id: " + foundCustomer.getCustomerID() + "\nName: " + foundCustomer.getName() + "\tRentals: "
+					+ foundCustomer.getRentals().size() + "\n";
 			for (Rental rental : foundCustomer.getRentals()) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
+				result += "\tTitle: " + rental.getVideo().getTitle() + " ";
+				result += "\tPrice Code: " + rental.getVideo().getPriceCode();
 			}
 	
 			List<Rental> rentals = new ArrayList<Rental>();
@@ -97,5 +98,7 @@ public class RentServiceImpl implements RentService {
 	
 			getCustomerRepository().saveCustomer(foundCustomer);
 		}
+		
+		return result;
 	}
 }

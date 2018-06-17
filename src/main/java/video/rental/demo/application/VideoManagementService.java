@@ -1,6 +1,6 @@
 package video.rental.demo.application;
 
 public interface VideoManagementService {
-	void listVideos();
+	String listVideos();
 	void registerVideo(String videoTitle, int videoType, int videoPriceCode, int videoRating);
 }

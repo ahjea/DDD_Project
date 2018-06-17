@@ -1,5 +1,4 @@
 package video.rental.demo.presentation.impl;
-//package video.rental.demo;
 //
 //import java.awt.EventQueue;
 //
@@ -12,7 +11,10 @@ package video.rental.demo.presentation.impl;
 //import javax.swing.ScrollPaneConstants;
 //import javax.swing.SpinnerListModel;
 //
-//import video.rental.demo.Rating;
+//import video.rental.demo.application.CustomerManagementService;
+//import video.rental.demo.application.RentService;
+//import video.rental.demo.application.VideoManagementService;
+//import video.rental.demo.domain.model.video.Rating;
 //
 //import javax.swing.JSpinner;
 //import javax.swing.JSeparator;
@@ -21,6 +23,10 @@ package video.rental.demo.presentation.impl;
 //
 //@SuppressWarnings("serial")
 //public class GraphicUI extends JFrame {
+//	
+//	private CustomerManagementService customerManagementService;
+//	private VideoManagementService videoManagementService;
+//	private RentService rentService;
 //
 //	private JTextField userCodeField;
 //	private JTextField nameField;
@@ -49,9 +55,11 @@ package video.rental.demo.presentation.impl;
 //	/**
 //	 * Create the application.
 //	 */
-//	public GraphicUI(/* ... */) {
+//	public GraphicUI(CustomerManagementService customerManagementService, VideoManagementService videoManagementService, RentService rentService) {
 //		initialize();
-//		// ...
+//		this.customerManagementService = customerManagementService;
+//		this.videoManagementService = videoManagementService;
+//		this.rentService = rentService;
 //	}
 //
 //	/**
@@ -155,45 +163,45 @@ package video.rental.demo.presentation.impl;
 //
 //	private void clearRentals()
 //	{
-//		int code = Integer.parseInt(userCodeField.getText().toString());
+//		String code = userCodeField.getText().toString();
 //
-//		String result = ...;
+//		String result = rentService.clearRentals(code);
 //		
 //		textArea.append(result);
 //	}
 //
 //	private void getCustomerReport() {
-//		int code = Integer.parseInt(userCodeField.getText().toString());
+//		String code = userCodeField.getText().toString();
 //
-//		String result = ...;
+//		String result = customerManagementService.getCustomerReport(code);
 //
 //		textArea.append(result);
 //	}
 //
 //	private void listVideos() {
 //		textArea.append("List of videos\n");
-//		textArea.append(...);
+//		textArea.append(videoManagementService.listVideos());
 //		textArea.append("End of list\n");
 //	}
 //
 //	private void listCustomers() {
 //		textArea.append("List of customers\n");
-//		textArea.append(...);
+//		textArea.append(customerManagementService.listCustomers());
 //		textArea.append("End of list\n");
 //	}
 //
 //	private void returnVideo() {
-//		int customerCode = Integer.parseInt(userCodeField.getText().toString());
+//		String customerCode = userCodeField.getText().toString();
 //		String videoTitle = titleField.getText().toString();
 //
-//		// ...
+//		rentService.returnVideo(customerCode, videoTitle);
 //	}
 //
 //	private void rentVideo() {
-//		int customerCode = Integer.parseInt(userCodeField.getText().toString());
-//		String videoTitle = titleField.getText().toString();
+//		String customerCode = userCodeField.getText().toString();
+//		int videoID = Integer.parseInt(titleField.getText().toString());
 //
-//		// ...
+//		rentService.rentVideo(customerCode, videoID);
 //	}
 //
 //	private void registerUser() {

@@ -22,18 +22,21 @@ public class CustomerManagementServiceImpl implements CustomerManagementService 
 	 * @see video.rental.demo.application.impl.CustomerManagementService#listCustomers()
 	 */
 	@Override
-	public void listCustomers() {
+	public String listCustomers() {
 		List<Customer> customers = getCustomerrepository().findAllCustomers();
 	
+		String result = "";
 		for (Customer customer : customers) {
-			System.out.println("ID: " + customer.getCustomerID() + "\nName: " + customer.getName() + "\tRentals: "
-					+ customer.getRentals().size());
+			result += "ID: " + customer.getCustomerID() + "\nName: " + customer.getName() + "\tRentals: "
+					+ customer.getRentals().size() + "\n";
 			for (Rental rental : customer.getRentals()) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
-				System.out.println("\tReturn Status: " + rental.getStatus());
+				result += "\tTitle: " + rental.getVideo().getTitle() + " ";
+				result += "\tPrice Code: " + rental.getVideo().getPriceCode();
+				result += "\tReturn Status: " + rental.getStatus() + "\n";
 			}
 		}
+		
+		return result;
 	}
 	
 	/* (non-Javadoc)

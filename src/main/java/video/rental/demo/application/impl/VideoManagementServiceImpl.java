@@ -32,18 +32,20 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	 * @see video.rental.demo.application.impl.VideoManagementService#listVideos()
 	 */
 	@Override
-	public void listVideos() {
+	public String listVideos() {
 		List<Video> videos = getVideoRepository().findAllVideos();
-	
+		
+		String result = "";	
 		for (Video video : videos) {
-			System.out.println(
-					"Video ID: "+ video.getVideoIDNumber() +
+			result += "Video ID: "+ video.getVideoIDNumber() +
 					"\tVideo type: " + video.getVideoType() + 
 					"\tPrice code: " + video.getPriceCode() + 
 					"\tRating: " + video.getVideoRating() +
-					"\tTitle: " + video.getTitle()
-					); 
+					"\tTitle: " + video.getTitle() +
+					"\n"; 
 		}
+		
+		return result;
 	}
 	
 	/* (non-Javadoc)

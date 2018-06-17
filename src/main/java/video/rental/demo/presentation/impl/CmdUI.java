@@ -6,7 +6,6 @@ import video.rental.demo.presentation.UI;
 import video.rental.demo.application.RentService;
 import video.rental.demo.application.CustomerManagementService;
 import video.rental.demo.application.VideoManagementService;
-import video.rental.demo.domain.model.video.VideoID;
 
 public class CmdUI implements UI {
 	
@@ -68,7 +67,7 @@ public class CmdUI implements UI {
 		System.out.println("Enter customer code: ");
 		String customerCode = scanner.next();
 
-		getRentService().clearRentals(customerCode);
+		System.out.println(getRentService().clearRentals(customerCode));
 	}
 
 	public void returnVideo() {
@@ -84,14 +83,14 @@ public class CmdUI implements UI {
 	public void listVideos() {
 		System.out.println("List of videos");
 
-		getVideoManagementService().listVideos();
+		System.out.println(getVideoManagementService().listVideos());
 		System.out.println("End of list");
 	}
 
 	public void listCustomers() {
 		System.out.println("List of customers");
 
-		getCustomerManagementService().listCustomers();
+		System.out.println(getCustomerManagementService().listCustomers());
 		System.out.println("End of list");
 	}
 
