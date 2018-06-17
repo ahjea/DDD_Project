@@ -1,7 +1,9 @@
 package video.rental.demo.application.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import video.rental.demo.application.RentService;
 import video.rental.demo.domain.model.customer.Customer;
@@ -14,6 +16,7 @@ import video.rental.demo.domain.model.video.VideoRepository;
 
 public class RentServiceImpl implements RentService {
 	
+	private Map<VideoID, CustomerID> rentLog = new HashMap<>();
 	private CustomerRepository customerRepository;
 	private VideoRepository videorepository;
 	
@@ -52,12 +55,19 @@ public class RentServiceImpl implements RentService {
 			return;
 	
 		Boolean status = foundVideo.rentFor(foundCustomer);
-		if (status == true) {
-			getVideorepository().saveVideo(foundVideo);
-			getCustomerRepository().saveCustomer(foundCustomer);
-		} else {
+		if (status == false) {
 			return;
 		}
+		
+		CustomerID locked = rentLog.putIfAbsent(videoID, customerID);
+		if (locked != null) {
+			return;
+		}
+		
+		getVideorepository().saveVideo(foundVideo);
+		getCustomerRepository().saveCustomer(foundCustomer);
+	
+		rentLog.remove(videoID);
 	}
 	
 	public void returnVideo(CustomerID customerID, VideoID videoID) {
