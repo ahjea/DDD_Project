@@ -9,6 +9,7 @@ import video.rental.demo.domain.model.video.Rating;
 import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.Type;
 import video.rental.demo.domain.model.video.Video;
+import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.VideoRepository;
 
 public class VideoManagementServiceImpl implements VideoManagementService {
@@ -36,7 +37,7 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	
 		for (Video video : videos) {
 			System.out.println(
-					"Video ID"+ video.getVideoID() +
+					"Video ID: "+ video.getVideoIDNumber() +
 					"\tVideo type: " + video.getVideoType() + 
 					"\tPrice code: " + video.getPriceCode() + 
 					"\tRating: " + video.getVideoRating() +
@@ -51,6 +52,8 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	@Override
 	public void registerVideo(String videoTitle, int videoType, int videoPriceCode, int videoRating) {
 		Date registeredDate = new Date();
+		
+		int videoid = videoRepository.findAllVideos().size()+1;
 		
 		Rating rating;
 		if (videoRating == 1) rating = Rating.TWELVE;
@@ -73,7 +76,7 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 		Title title;
 		title = new Title(videoTitle);
 		
-		Video video = new Video(title, type, priceCode, rating, registeredDate);
+		Video video = new Video(new VideoID(videoid),title, type, priceCode, rating, registeredDate);
 	
 		getVideoRepository().saveVideo(video);
 	}

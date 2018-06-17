@@ -27,13 +27,11 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 
 	private Date registeredDate;
 	private boolean rented;
-
-	private List<Video> videolist = new ArrayList<Video>();
 	
 	public Video() {}	// for hibernate
 
-	public Video(Title title, Type videoType, PriceCode priceCode, Rating videoRating, Date registeredDate) {
-		this.videoID = new VideoID(getVideoList().size());
+	public Video(VideoID videoID, Title title, Type videoType, PriceCode priceCode, Rating videoRating, Date registeredDate) {
+		this.videoID = videoID;
 		this.title = title; 
 		this.videoType = videoType;
 		this.priceCode = priceCode;
@@ -54,9 +52,6 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		return pentalty;
 	}
 
-	public List getVideoList() {
-		return videolist;
-	}
 	public PriceCode getPriceCode() {
 		return priceCode;
 	}
@@ -145,6 +140,10 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	public VideoID getVideoID() {
 		return videoID;
 	}
+	
+	public int getVideoIDNumber() {
+		return videoID.getId();
+	}
 
 	public void setVideoID(VideoID videoID) {
 		this.videoID = videoID;
@@ -155,12 +154,6 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		// TODO Auto-generated method stub
 		if(other.videoID == this.getVideoID()) return true;
 		else return false;
-	}
-	
-	public int getNextVideoID() {
-		
-		int videoID = getVideoList().lastIndexOf(getVideoID());
-		return videoID;
 	}
 
 }
