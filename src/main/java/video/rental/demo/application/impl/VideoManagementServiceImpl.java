@@ -36,7 +36,8 @@ public class VideoManagementServiceImpl implements VideoManagementService {
 	
 		for (Video video : videos) {
 			System.out.println(
-					"Video type: " + video.getVideoType() + 
+					"Video ID"+ video.getVideoID() +
+					"\tVideo type: " + video.getVideoType() + 
 					"\tPrice code: " + video.getPriceCode() + 
 					"\tRating: " + video.getVideoRating() +
 					"\tTitle: " + video.getTitle()

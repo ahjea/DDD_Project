@@ -11,7 +11,7 @@ import video.rental.demo.domain.model.video.Title;
 import video.rental.demo.domain.model.video.VideoRepository;
 
 public class VideoRepositoryMemImpl implements VideoRepository {
-	private Map<Title, Video> videos = new HashMap<>();
+	private Map<VideoID, Video> videos = new HashMap<>();
 
 	@Override
 	public Video findVideoByID(VideoID videoid) {
@@ -28,6 +28,6 @@ public class VideoRepositoryMemImpl implements VideoRepository {
 	@Override
 	public void saveVideo(Video video) {
 		// TODO Auto-generated method stub
-		videos.put(video.getTitle(), video);
+		videos.put(video.getVideoID(), video);
 	}
 }

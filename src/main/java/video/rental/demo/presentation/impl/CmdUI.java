@@ -6,6 +6,7 @@ import video.rental.demo.presentation.UI;
 import video.rental.demo.application.RentService;
 import video.rental.demo.application.CustomerManagementService;
 import video.rental.demo.application.VideoManagementService;
+import video.rental.demo.domain.model.video.VideoID;
 
 public class CmdUI implements UI {
 	
@@ -111,13 +112,14 @@ public class CmdUI implements UI {
 		System.out.println("Enter customer code: ");
 		String code = scanner.next();
 
-		System.out.println("Enter video title to rent: ");
-		String videoTitle = scanner.next();
-
-		getRentService().rentVideo(code, videoTitle);
+		System.out.println("Enter video id to rent: ");
+		int VideoID = scanner.nextInt();
+		
+		getRentService().rentVideo(code, VideoID);
 	}
 
 	public void register(String object) {
+		
 		if (object.equals("customer")) {
 			System.out.println("Enter customer name: ");
 			String name = scanner.next();

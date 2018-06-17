@@ -38,7 +38,7 @@ public class RentServiceImpl implements RentService {
 		this.videorepository = videorepository;
 	}
 	
-	public void rentVideo(String code, String videoid) {
+	public void rentVideo(String code, int videoid) {
 		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(code));
 		if (foundCustomer == null)
 			return;

@@ -2,6 +2,7 @@ package video.rental.demo.domain.model.video;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -27,9 +28,12 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 	private Date registeredDate;
 	private boolean rented;
 
+	private List<Video> videolist = new ArrayList<Video>();
+	
 	public Video() {}	// for hibernate
 
 	public Video(Title title, Type videoType, PriceCode priceCode, Rating videoRating, Date registeredDate) {
+		this.videoID = new VideoID(getVideoList().size());
 		this.title = title; 
 		this.videoType = videoType;
 		this.priceCode = priceCode;
@@ -50,6 +54,9 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		return pentalty;
 	}
 
+	public List getVideoList() {
+		return videolist;
+	}
 	public PriceCode getPriceCode() {
 		return priceCode;
 	}
@@ -148,6 +155,12 @@ public class Video implements video.rental.demo.domain.shared.Entity<Video>{
 		// TODO Auto-generated method stub
 		if(other.videoID == this.getVideoID()) return true;
 		else return false;
+	}
+	
+	public int getNextVideoID() {
+		
+		int videoID = getVideoList().lastIndexOf(getVideoID());
+		return videoID;
 	}
 
 }
