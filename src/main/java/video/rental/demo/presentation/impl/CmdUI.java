@@ -3,19 +3,22 @@ package video.rental.demo.presentation.impl;
 import java.util.Scanner;
 
 import video.rental.demo.presentation.UI;
-import video.rental.demo.application.impl.Interactor;
+import video.rental.demo.application.RentService;
+import video.rental.demo.application.impl.CustomerManagementServiceImpl;
+import video.rental.demo.application.impl.RentServiceImpl;
+import video.rental.demo.application.impl.VideoManagementServiceImpl;
 
-/*
- * �뵒鍮� �뿊�꽭�뒪 遺꾨━
- * constructor瑜� �넻�븳 �뵒�렂�뜕�떆 �씤�젥
- * 鍮꾩쫰�땲�뒪 濡쒖쭅 遺�
- * */
 public class CmdUI implements UI {
-	Interactor interactor;
 	
-	public CmdUI(Interactor interactor) {
+	private CustomerManagementServiceImpl customermanagementserviceimpl;
+	private VideoManagementServiceImpl videomanagementserviceimpl;
+	private RentServiceImpl rentserviceimpl;
+	
+	public CmdUI(CustomerManagementServiceImpl customermanagementserviceimpl, VideoManagementServiceImpl videomanagementserviceimpl, RentServiceImpl rentserviceimpl) {
 		super();
-		this.interactor = interactor;
+		this.setCustomermanagementserviceimpl(customermanagementserviceimpl);
+		this.setVideomanagementserviceimpl(videomanagementserviceimpl);
+		this.setRentserviceimpl(rentserviceimpl);
 	}
 	
 	private static Scanner scanner = new Scanner(System.in);
@@ -65,30 +68,30 @@ public class CmdUI implements UI {
 		System.out.println("Enter customer code: ");
 		String customerCode = scanner.next();
 
-		interactor.clearRentals(customerCode);
+		getRentserviceimpl().clearRentals(customerCode);
 	}
 
 	public void returnVideo() {
 		System.out.println("Enter customer code: ");
 		String customerCode = scanner.next();
 		
-		System.out.println("Enter video title to return: ");
-		String videoTitle = scanner.next();
+		System.out.println("Enter video ID to return: ");
+		String videoID = scanner.next();
 		
-		interactor.returnVideo(customerCode, videoTitle);
+		getRentserviceimpl().returnVideo(customerCode, videoID);
 	}
 
 	public void listVideos() {
 		System.out.println("List of videos");
 
-		interactor.listVideos();
+		getVideomanagementserviceimpl().listVideos();
 		System.out.println("End of list");
 	}
 
 	public void listCustomers() {
 		System.out.println("List of customers");
 
-		interactor.listCustomers();
+		getCustomermanagementserviceimpl().listCustomers();
 		System.out.println("End of list");
 	}
 
@@ -96,7 +99,7 @@ public class CmdUI implements UI {
 		System.out.println("Enter customer code: ");
 		String code = scanner.next();
 
-		String result = interactor.getCustomerReport(code);
+		String result = getCustomermanagementserviceimpl().getCustomerReport(code);
 		
 		if (result == null) {
 			System.out.println("No customer found");
@@ -112,7 +115,7 @@ public class CmdUI implements UI {
 		System.out.println("Enter video title to rent: ");
 		String videoTitle = scanner.next();
 
-		interactor.rentVideo(code, videoTitle);
+		getRentserviceimpl().rentVideo(code, videoTitle);
 	}
 
 	public void register(String object) {
@@ -126,7 +129,7 @@ public class CmdUI implements UI {
 			System.out.println("Enter customer birthday: ");
 			String dateOfBirth = scanner.next();
 
-			interactor.registerCustomer(name, code, dateOfBirth);
+			getCustomermanagementserviceimpl().registerCustomer(name, code, dateOfBirth);
 		} else {
 			System.out.println("Enter video title to register: ");
 			String title = scanner.next();
@@ -140,7 +143,7 @@ public class CmdUI implements UI {
 			System.out.println("Enter video rating( 1 for 12, 2 for 15, 3 for 18 ):");
 			int videoRating = scanner.nextInt();
 			
-			interactor.registerVideo(title, videoType, priceCode, videoRating);
+			getVideomanagementserviceimpl().registerVideo(title, videoType, priceCode, videoRating);
 		}
 	}
 
@@ -159,6 +162,30 @@ public class CmdUI implements UI {
 		int command = scanner.nextInt();
 
 		return command;
+	}
+
+	public CustomerManagementServiceImpl getCustomermanagementserviceimpl() {
+		return customermanagementserviceimpl;
+	}
+
+	public void setCustomermanagementserviceimpl(CustomerManagementServiceImpl customermanagementserviceimpl) {
+		this.customermanagementserviceimpl = customermanagementserviceimpl;
+	}
+
+	public VideoManagementServiceImpl getVideomanagementserviceimpl() {
+		return videomanagementserviceimpl;
+	}
+
+	public void setVideomanagementserviceimpl(VideoManagementServiceImpl videomanagementserviceimpl) {
+		this.videomanagementserviceimpl = videomanagementserviceimpl;
+	}
+
+	public RentServiceImpl getRentserviceimpl() {
+		return rentserviceimpl;
+	}
+
+	public void setRentserviceimpl(RentServiceImpl rentserviceimpl) {
+		this.rentserviceimpl = rentserviceimpl;
 	}
 
 }

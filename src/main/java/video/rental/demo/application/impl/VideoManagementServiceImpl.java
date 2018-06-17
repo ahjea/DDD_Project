@@ -3,7 +3,7 @@ package video.rental.demo.application.impl;
 import java.util.Date;
 import java.util.List;
 
-import video.rental.demo.application.VideoService;
+import video.rental.demo.application.VideoManagementService;
 import video.rental.demo.domain.model.customer.Customer;
 import video.rental.demo.domain.model.customer.CustomerID;
 import video.rental.demo.domain.model.video.PriceCode;
@@ -15,32 +15,32 @@ import video.rental.demo.domain.model.video.Video;
 import video.rental.demo.domain.model.video.VideoID;
 import video.rental.demo.domain.model.video.VideoRepository;
 
-public class VideoServiceimpl implements VideoService {
+public class VideoManagementServiceImpl implements VideoManagementService {
 
-	VideoRepository videoRepository;
+	private VideoRepository videoRepository;
 	
-	public VideoServiceimpl(VideoRepository videorepository) {
-		this.videoRepository = videorepository;
+	public VideoManagementServiceImpl(VideoRepository videorepository) {
+		this.setVideoRepository(videorepository);
 	}
 
 	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.VideoService#getVideoRepository()
+	 * @see video.rental.demo.application.impl.VideoManagementService#getVideoRepository()
 	 */
 	@Override
 	public VideoRepository getVideoRepository() {
 		return videoRepository;
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.VideoService#setVideoRepository(video.rental.demo.domain.model.video.VideoRepository)
+	 * @see video.rental.demo.application.impl.VideoManagementService#setVideoRepository(video.rental.demo.domain.model.video.VideoRepository)
 	 */
 	@Override
 	public void setVideoRepository(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.VideoService#listVideos()
+	 * @see video.rental.demo.application.impl.VideoManagementService#listVideos()
 	 */
 	@Override
 	public void listVideos() {
@@ -57,7 +57,7 @@ public class VideoServiceimpl implements VideoService {
 	}
 	
 	/* (non-Javadoc)
-	 * @see video.rental.demo.application.impl.VideoService#registerVideo(java.lang.String, int, int, int)
+	 * @see video.rental.demo.application.impl.VideoManagementService#registerVideo(java.lang.String, int, int, int)
 	 */
 	@Override
 	public void registerVideo(String videoTitle, int videoType, int videoPriceCode, int videoRating) {
@@ -88,50 +88,6 @@ public class VideoServiceimpl implements VideoService {
 	
 		getVideoRepository().saveVideo(video);
 	}
-	/*
-	//duplicated
-	public void returnVideo(String customerCode, String videoTitle) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(customerCode));
-		if (foundCustomer == null)
-			return;
 	
-		List<Rental> customerRentals = foundCustomer.getRentals();
-	
-		for (Rental rental : customerRentals) {
-			if (rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented()) {
-				Video video = rental.returnVideo();
-				video.setRented(false);
-				getVideoRepository().saveVideo(video);
-				break;
-			}
-		}
-	
-		getCustomerRepository().saveCustomer(foundCustomer);
-	}
-	
-	//duplicated
-	public void rentVideo(String code, String videoid) {
-		Customer foundCustomer = getCustomerRepository().findCustomerById(new CustomerID(code));
-		if (foundCustomer == null)
-			return;
-		
-		Video foundVideo = getVideoRepository().findVideoByID(new VideoID(videoid));
-	
-		if (foundVideo == null)
-			return;
-	
-		if (foundVideo.isRented() == true)
-			return;
-	
-		Boolean status = foundVideo.rentFor(foundCustomer);
-		if (status == true) {
-			getVideoRepository().saveVideo(foundVideo);
-			getCustomerRepository().saveCustomer(foundCustomer);
-		} else {
-			return;
-		}
-	}
-	
-	*/
 }
 

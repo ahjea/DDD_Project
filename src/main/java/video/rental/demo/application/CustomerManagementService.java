@@ -2,18 +2,16 @@ package video.rental.demo.application;
 
 import video.rental.demo.domain.model.customer.CustomerRepository;
 
-public interface CustomerService {
+public interface CustomerManagementService {
 
-	CustomerRepository getCustomerRepository();
-
-	void setCustomerRepository(CustomerRepository customerRepository);
-
-	void clearRentals(String customerCode);
+	void listCustomers();
 
 	String getCustomerReport(String customerid);
 
 	void registerCustomer(String name, String code, String dateOfBirth);
 
-	void listCustomers();
+	CustomerRepository getCustomerrepository();
+
+	void setCustomerrepository(CustomerRepository customerrepository);
 
 }
